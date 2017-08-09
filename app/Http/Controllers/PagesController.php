@@ -18,5 +18,8 @@ class PagesController extends Controller
       public function getCheckout(){
         return view('paginas_cliente.checkout');
     }
+      public function getProduto(){
+        return view('paginas_cliente.produto');
+    }
     
 }
