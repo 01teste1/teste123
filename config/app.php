@@ -163,6 +163,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class,
+
         /*
          * Package Service Providers...
          */

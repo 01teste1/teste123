@@ -68,6 +68,9 @@
 						<div class="short-description">
 							<p>Passeio pela capital reliriosa do pais,duração de 5 horas de passeio</br>1:30 de viagem</br>2:00 de parada basilica</br>1:30 viagem volta</br>1:30 de viagem</br>2:00 de parada basilica</br>1:30 viagem volta </br>1:30 de viagem</br>2:00 de parada basilica</br>1:30 viagem volta  .</p>						
 						</div>
+
+						<!-- começo calendario-->
+						<!-- fim calendario-->
 						
 						<form action="#">
 							<div class="quantity">
