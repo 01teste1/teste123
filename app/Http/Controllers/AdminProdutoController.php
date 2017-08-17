@@ -37,6 +37,7 @@
 			$this->col[] = ["label"=>"Preco Van","name"=>"preco_van","callback_php"=>'"R$ ". number_format($row->preco_van,2)'];
 			$this->col[] = ["label"=>"Preco Micro Onibus","name"=>"preco_micro_onibus","callback_php"=>'"R$ ". number_format($row->preco_micro_onibus,2)'];
 			$this->col[] = ["label"=>"Categoria","name"=>"id_categoria","join"=>"categoria,nome"];
+			$this->col[] = ["label"=>"Status","name"=>"status"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
@@ -50,6 +51,7 @@
 			$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
 			$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
 			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'categoria,nome'];
+			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Ativo;Inativo'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -63,6 +65,7 @@
 			//$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
 			//$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
 			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'categoria,nome'];
+			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Ativo;Inativo'];
 			# OLD END FORM
 
 			/* 
