@@ -59,7 +59,7 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<div class="copyright">
-								<p>Copyright ©  2017 <a href="#">01 sistemas</a>. Todos os direitos reservados
+								<p>Copyright ©  {{ date('Y')}} <a href="#">01 sistemas</a>. Todos os direitos reservados
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6">

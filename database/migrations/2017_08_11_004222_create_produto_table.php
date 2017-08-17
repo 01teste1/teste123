@@ -19,10 +19,12 @@ class CreateProdutoTable extends Migration
             $table->longText('descricao');
             $table->text('detalhes');
             $table->string('duracao');
-            $table->decimal('preco_carro',5,2);
-            $table->decimal('preco_van',5,2);
-            $table->decimal('preco_micro_onibus',5,2);
+            $table->decimal('preco_carro',6,2);
+            $table->decimal('preco_mini_van',6,2);
+            $table->decimal('preco_van',6,2);
+            $table->decimal('preco_micro_onibus',6,2);
             $table->integer('id_categoria')->unsigned();            
+            $table->string('status');            
             $table->timestamps();
             $table->foreign('id_categoria')->references('id')->on('categoria');
         });

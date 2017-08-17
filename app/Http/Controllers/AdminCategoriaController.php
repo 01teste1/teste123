@@ -37,16 +37,16 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:1|max:255|string','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|string|min:3|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-2','dataenum'=>'Ativo;Inativo'];
+			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Ativo;Inativo'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:1|max:255|string','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'date','validation'=>'required','width'=>'col-sm-2'];
+			//$this->form[] = ["label"=>"Nome","name"=>"nome","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Descricao","name"=>"descricao","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+			//$this->form[] = ["label"=>"Status","name"=>"status","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
 			# OLD END FORM
 
 			/* 

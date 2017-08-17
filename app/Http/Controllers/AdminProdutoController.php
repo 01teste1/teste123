@@ -31,37 +31,38 @@
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Nome","name"=>"nome"];
-			$this->col[] = ["label"=>"Descricao","name"=>"descricao"];
-			$this->col[] = ["label"=>"Detalhes","name"=>"detalhes"];
 			$this->col[] = ["label"=>"Duracao","name"=>"duracao"];
-			$this->col[] = ["label"=>"Preco Carro","name"=>"preco_carro"];
-			$this->col[] = ["label"=>"Preco Van","name"=>"preco_van"];
-			$this->col[] = ["label"=>"Preco Micro Onibus","name"=>"preco_micro_onibus"];
+			$this->col[] = ["label"=>"Preco Carro","name"=>"preco_carro","callback_php"=>'"R$ ". number_format($row->preco_carro,2)'];
+			$this->col[] = ["label"=>"Preco Mini Van","name"=>"preco_mini_van","callback_php"=>'"R$ ". number_format($row->preco_mini_van,2)'];
+			$this->col[] = ["label"=>"Preco Van","name"=>"preco_van","callback_php"=>'"R$ ". number_format($row->preco_van,2)'];
+			$this->col[] = ["label"=>"Preco Micro Onibus","name"=>"preco_micro_onibus","callback_php"=>'"R$ ". number_format($row->preco_micro_onibus,2)'];
 			$this->col[] = ["label"=>"Categoria","name"=>"id_categoria","join"=>"categoria,nome"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'time','validation'=>'required','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required','width'=>'col-sm-10','decimals'=>'1'];
-			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'categoria,nome'];
+			$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:3|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
+			$this->form[] = ['label'=>'Preco Mini Van','name'=>'preco_mini_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
+			$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
+			$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
+			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'categoria,nome'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'time','validation'=>'required','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required','width'=>'col-sm-10','decimals'=>'1'];
-			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'categoria,nome'];
+			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:3|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
+			//$this->form[] = ['label'=>'Preco Mini Van','name'=>'preco_mini_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
+			//$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
+			//$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
+			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'categoria,nome'];
 			# OLD END FORM
 
 			/* 
@@ -162,8 +163,6 @@
 	        |
 	        */
 	        $this->script_js = NULL;
-
-
             /*
 	        | ---------------------------------------------------------------------- 
 	        | Include HTML Code before index table 
@@ -197,7 +196,6 @@
 	        |
 	        */
 	        $this->load_js = array();
-	        
 	        
 	        
 	        /*
@@ -270,9 +268,15 @@
 	    |
 	    */
 	    public function hook_before_add(&$postdata) {        
-	        //Your code here
-
-	    }
+			//Your code here
+			/*
+			*  Converte valor R% 5,800,00 em 5800.00 para inserir no banco
+			*/
+			$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
+			$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
+			$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
+			$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
+	    }	
 
 	    /* 
 	    | ---------------------------------------------------------------------- 
@@ -283,7 +287,6 @@
 	    */
 	    public function hook_after_add($id) {        
 	        //Your code here
-
 	    }
 
 	    /* 
@@ -295,9 +298,16 @@
 	    | 
 	    */
 	    public function hook_before_edit(&$postdata,$id) {        
-	        //Your code here
-
-	    }
+			//Your code here
+			//dd(number_format($postdata['preco_micro_onibus']/100,2,'.',''));
+			/*
+			*  Converte valor R% 5,800,00 em 5800.00 para inserir no banco
+			*/
+			$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
+			$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
+			$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
+			$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
+		}
 
 	    /* 
 	    | ---------------------------------------------------------------------- 
