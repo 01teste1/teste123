@@ -19,7 +19,7 @@ class PagesController extends Controller
         return view('paginas_cliente.checkout');
     }
       public function getProduto(){
-        return view('paginas_cliente.produto');
+        // return view('paginas_cliente.produto');
     }
     
 }
