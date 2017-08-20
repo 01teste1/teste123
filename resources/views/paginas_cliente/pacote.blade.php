@@ -247,7 +247,7 @@
 						</div>
 					</div>
 					<!-- pagination start -->
-					<div class="shop-pagination">
+					{{--  <div class="shop-pagination">
 						<div class="pagination">
 							<ul>
 								<li class="active">1</li>
@@ -256,7 +256,8 @@
 								<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
 							</ul>
 						</div>					
-					</div>
+					</div>  --}}
+					{{ $produtos->links('vendor.pagination.default') }}
 					<!-- pagination end -->
 				</div>
 			</div>
