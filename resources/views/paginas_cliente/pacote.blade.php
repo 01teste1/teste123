@@ -204,7 +204,7 @@
 									<span class="sale-text">Sale</span>
 									<div class="product-img">
 										<a href="#">
-											<img class="primary-image" src="img/product/17.jpg" alt="" />
+											<img class="primary-image" src="{{$produto->imagem}}" alt="" />
 											<img class="secondary-image" src="img/product/18.jpg" alt="" />
 										</a>
 										<div class="actions">
