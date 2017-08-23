@@ -9,9 +9,9 @@ class PagesController extends Controller
     public function getIndex(){
         return view('paginas_cliente.index');
     }
-     public function getPacote(){
-        return view('paginas_cliente.pacote');
-    }
+    //  public function getPacote(){
+    //     return view('paginas_cliente.pacote');
+    // }
     public function getCarrinho(){
         return view('paginas_cliente.carrinho');
     }
@@ -19,7 +19,7 @@ class PagesController extends Controller
         return view('paginas_cliente.checkout');
     }
       public function getProduto(){
-        // return view('paginas_cliente.produto');
+         return view('paginas_cliente.produto');
     }
     
 }
