@@ -53,10 +53,10 @@
 						<div class="product-nav">
 							<a href="#"><i class="fa fa-angle-right"></i></a>
 						</div>
-						<h1 class="product_title">Passeio Aparecida</h1>
+						<h1 class="product_title">{{$produto->nome}}</h1>
 						<div class="price-box">
-							<span class="new-price">R$ 350,00</span>
-							<span class="old-price">R$ 400,00</span>
+							<span class="Preço">{{$produto->preco_carro}}</span>
+							<span class="Preço antigo">R$ 400,00</span>
 						</div>
 						<div class="pro-rating">
 							<a href="#"><i class="fa fa-star"></i></a>
@@ -66,7 +66,7 @@
 							<a href="#"><i class="fa fa-star"></i></a>
 						</div>
 						<div class="short-description">
-							<p>Passeio pela capital reliriosa do pais,duração de 5 horas de passeio</br>1:30 de viagem</br>2:00 de parada basilica</br>1:30 viagem volta</br>1:30 de viagem</br>2:00 de parada basilica</br>1:30 viagem volta </br>1:30 de viagem</br>2:00 de parada basilica</br>1:30 viagem volta  .</p>						
+							{{$produto->descricao}}						
 						</div>
 
 						<!-- começo calendario-->
@@ -105,9 +105,8 @@
 						  <div class="tab-content">
 							<div role="tabpanel" class="tab-pane active" id="tab-desc">
 								<div class="product-tab-desc">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
-									<p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.</p>
-								</div>
+								{{$produto->detalhe}}
+									</div>
 							</div>
 							<div role="tabpanel" class="tab-pane" id="page-comments">
 								<div class="product-tab-desc">
