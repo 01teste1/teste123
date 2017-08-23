@@ -201,25 +201,27 @@
 							<!-- single-product start -->
 							<div class="col-lg-4 col-md-4 col-sm-4">
 								<div class="single-product">
-									<span class="sale-text">Sale</span>
+									@if($produto->oferta)
+										<span class="sale-text">Oferta</span>
+									@endif
 									<div class="product-img">
-										<a href="#">
-											<img class="primary-image" src="{{$produto->imagem}}" alt="" />
-											<img class="secondary-image" src="img/product/18.jpg" alt="" />
+										<a href="{{ route('produto.show',$produto.id) }}">
+											<img class="primary-image" src="{{$produto->imagemCapa}}" alt="" />
+											<img class="secondary-image" src="{{$produto->imagemCapa}}" alt="" />
 										</a>
 										<div class="actions">
 											<div class="action-buttons">
 												<div class="add-to-cart">
-													<a href="#">Add to cart</a>
+													<a href="#">Adicionar no Carrinho</a>
 												</div>
 												<div class="add-to-links">
-													<div class="add-to-wishlist">
+													{{--  <div class="add-to-wishlist">
 														<a href="#" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-star"></i>
 														</a>
 													</div>
 													<div class="compare-button">
 														<a href="#" data-toggle="tooltip" title="Compare"><i class="fa fa-exchange"></i></a>
-													</div>									
+													</div>									  --}}
 												</div>
 												<div class="quickviewbtn">
 													<a href="#" data-toggle="tooltip" title="Quick View"><i class="fa fa-search-plus"></i></a>

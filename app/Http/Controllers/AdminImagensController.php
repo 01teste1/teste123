@@ -31,7 +31,7 @@
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Produto","name"=>"id_produto","join"=>"produto,nome"];
-			$this->col[] = ["label"=>"Nome","name"=>"nome"];
+			$this->col[] = ["label"=>"Nome","name"=>"nome","image"=>true];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
@@ -42,7 +42,7 @@
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Produto','name'=>'id_produto','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Produto','name'=>'id_produto','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'produto,nome'];
 			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'upload','validation'=>'required|min:1|image','width'=>'col-sm-10'];
 			# OLD END FORM
 

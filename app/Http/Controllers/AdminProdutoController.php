@@ -32,6 +32,7 @@
 			$this->col = [];
 			$this->col[] = ["label"=>"Nome","name"=>"nome"];
 			$this->col[] = ["label"=>"Duracao","name"=>"duracao"];
+			$this->col[] = ["label"=>"ImagemCapa","name"=>"imagemCapa","image"=>true];
 			$this->col[] = ["label"=>"Preco Carro","name"=>"preco_carro","callback_php"=>'"R$ ". number_format($row->preco_carro,2)'];
 			$this->col[] = ["label"=>"Preco Mini Van","name"=>"preco_mini_van","callback_php"=>'"R$ ". number_format($row->preco_mini_van,2)'];
 			$this->col[] = ["label"=>"Preco Van","name"=>"preco_van","callback_php"=>'"R$ ". number_format($row->preco_van,2)'];
@@ -43,29 +44,31 @@
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:3|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
+			$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
+			$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
+			$this->form[] = ['label'=>'ImagemCapa','name'=>'imagemCapa','type'=>'upload','validation'=>'required','width'=>'col-sm-5'];
 			$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
 			$this->form[] = ['label'=>'Preco Mini Van','name'=>'preco_mini_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
-			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'categoria,nome'];
-			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Ativo;Inativo'];
+			$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
+			$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5'];
+			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5','datatable'=>'categoria,nome'];
+			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-5','dataenum'=>'Ativo;Inativo'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:3|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
+			//$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
+			//$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
+			//$this->form[] = ['label'=>'ImagemCapa','name'=>'imagemCapa','type'=>'upload','validation'=>'required','width'=>'col-sm-5'];
 			//$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
 			//$this->form[] = ['label'=>'Preco Mini Van','name'=>'preco_mini_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			//$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			//$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
-			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'categoria,nome'];
-			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Ativo;Inativo'];
+			//$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
+			//$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5'];
+			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5'];
+			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-5','dataenum'=>'Ativo;Inativo'];
 			# OLD END FORM
 
 			/* 
@@ -81,7 +84,8 @@
 	        | 
 	        */
 	        $this->sub_module = array();
-
+			
+			$this->sub_module[] = ['label'=>'Imagems','path'=>'imagens','parent_columns'=>'nome','foreign_key'=>'id_produto','button_color'=>'info','button_icon'=>'fa fa-bars'];
 
 	        /* 
 	        | ---------------------------------------------------------------------- 
