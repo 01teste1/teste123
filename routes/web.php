@@ -12,12 +12,13 @@
 */
 
 Route::get('/', 'PagesController@getIndex');
-// Route::get('pacote', 'PagesController@getPacote');
+Route::get('pacote', 'PagesController@getPacote');
 Route::get('carrinho', 'PagesController@getCarrinho');
 Route::get('checkout', 'PagesController@getCheckout');
 Route::get('produto', 'PagesController@getProduto');
 
-Route::resource('pacote','ProdutoController');
+//pruduto
+Route::get('produto/{id}','ProdutoController@show')->name('produto.show');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

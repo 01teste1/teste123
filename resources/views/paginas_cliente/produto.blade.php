@@ -1,4 +1,7 @@
 @extends('main')
+@section('custom-css')
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/lightslider.min.css') }}" />
+@endsection
 @section('title','produto')
 @section('content')
 		<!-- header-mid-area end -->
@@ -28,35 +31,47 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="single-product-image">
-						<div class="single-product-tab">
-						  <!-- Nav tabs -->
-						  <ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><img alt="" src="img/product/tab/s1.jpg"></a></li>
-							<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><img alt="" src="img/product/tab/s2.jpg"></a></li>
-							<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><img alt="" src="img/product/tab/s3.jpg"></a></li>
-							<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><img alt="" src="img/product/tab/s4.jpg"></a></li>
-						  </ul>
-
+					{{--  <div class="single-product-image">  --}}
+						{{--  <div class="single-product-tab">
 						  <!-- Tab panes -->
+						  <div class="col-lg-10">
 						  <div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="home"><img alt="" src="img/product/tab/1.jpg"></div>
-							<div role="tabpanel" class="tab-pane" id="profile"><img alt="" src="img/product/tab/2.jpg"></div>
-							<div role="tabpanel" class="tab-pane" id="messages"><img alt="" src="img/product/tab/3.jpg"></div>
-							<div role="tabpanel" class="tab-pane" id="settings"><img alt="" src="img/product/tab/4.jpg"></div>
+							@foreach($imagens as $key => $imagem)								
+									<div role="tabpanel" @if($key == 0) class="tab-pane active" @else class="tab-pane" @endif id="imagem-{{$key}}"><img alt="" src="{{asset($imagem->nome)}}"></div>
+							@endforeach
+						  </div>						  
 						  </div>
+						  	<!-- Nav tabs -->
+							<div class="col-lg-2">
+							<ul class="nav nav-tabs" role="tablist">						
+								@foreach($imagens as $key => $imagem)								
+									
+									<li role="presentation" @if($key == 0) class="active" @endif><a href="#imagem-{{$key}}" aria-controls="#imagem-{{$key}}" role="tab" data-toggle="tab"><img alt="" src="{{asset($imagem->nome)}}"></a></li>
+									
+								@endforeach							
+							</ul>
+							</div>						  
+						  	
 						</div>
-					</div>
+					</div>  --}}
+					<ul id="imageGallery">
+						@foreach($imagens as $key => $imagem)
+							<li data-thumb="{{asset($imagem->nome)}}">
+								<img src="{{asset($imagem->nome)}}" />
+							</li>
+						@endforeach
+					</ul>
+					
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="single-product-info">
 						<div class="product-nav">
-							<a href="#"><i class="fa fa-angle-right"></i></a>
+							<a href=""><i class="fa fa-angle-right"></i></a>
 						</div>
 						<h1 class="product_title">{{$produto->nome}}</h1>
 						<div class="price-box">
 							<span class="Preço">{{$produto->preco_carro}}</span>
-							<span class="Preço antigo">R$ 400,00</span>
+							{{--  <span class="Preço antigo">R$ 400,00</span>  --}}
 						</div>
 						<div class="pro-rating">
 							<a href="#"><i class="fa fa-star"></i></a>
@@ -66,7 +81,7 @@
 							<a href="#"><i class="fa fa-star"></i></a>
 						</div>
 						<div class="short-description">
-							{{$produto->descricao}}						
+							{!! $produto->descricao !!}						
 						</div>
 
 						<!-- começo calendario-->
@@ -105,7 +120,8 @@
 						  <div class="tab-content">
 							<div role="tabpanel" class="tab-pane active" id="tab-desc">
 								<div class="product-tab-desc">
-								{{$produto->detalhe}}
+								{!! $produto->detalhes !!}
+												<img src="{{asset('/uploads/1/2017-08/2017_techart_porsche_911_turbo_gt_street_r_1920x1080.jpg')}}" />
 									</div>
 							</div>
 							<div role="tabpanel" class="tab-pane" id="page-comments">
@@ -182,4 +198,17 @@
 	</div>
 	
 	
+	@endsection
+	@section('scripts')
+
+	<script src="{{ asset('js/lightslider.min.js') }}"></script>
+	<script type="text/javascript">
+	$('#imageGallery').lightSlider({
+      gallery:true,
+	  loop:true,
+	  item:1,
+	  adaptiveHeight:true,
+	  thumbItem: 6,
+		});
+	</script>
 	@endsection

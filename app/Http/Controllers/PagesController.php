@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
     public function getIndex(){
         return view('paginas_cliente.index');
     }
-    //  public function getPacote(){
-    //     return view('paginas_cliente.pacote');
-    // }
+     public function getPacote(){
+        $produtos = Db::table('produto')
+        ->select('produto.id','produto.nome','produto.preco_carro','produto.imagemCapa') 
+        ->where('produto.status','=','Ativo')
+        ->paginate(10);
+        return view('paginas_cliente.pacote')->withProdutos($produtos);
+    }
     public function getCarrinho(){
         return view('paginas_cliente.carrinho');
     }

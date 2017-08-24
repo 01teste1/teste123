@@ -201,11 +201,11 @@
 							<!-- single-product start -->
 							<div class="col-lg-4 col-md-4 col-sm-4">
 								<div class="single-product">
-									@if($produto->oferta)
+									{{--  @if($produto->oferta)
 										<span class="sale-text">Oferta</span>
-									@endif
+									@endif  --}}
 									<div class="product-img">
-										<a href="{{ route('produto.show',$produto.id) }}">
+										<a href="{{ route('produto.show',$produto->id) }}">
 											<img class="primary-image" src="{{$produto->imagemCapa}}" alt="" />
 											<img class="secondary-image" src="{{$produto->imagemCapa}}" alt="" />
 										</a>
@@ -224,7 +224,7 @@
 													</div>									  --}}
 												</div>
 												<div class="quickviewbtn">
-													<a href="#" data-toggle="tooltip" title="Quick View"><i class="fa fa-search-plus"></i></a>
+													<a href="{{route('produto.show',$produto->id)}}" data-toggle="tooltip" title="Ver"><i class="fa fa-search-plus"></i></a>
 												</div>
 											</div>
 										</div>							

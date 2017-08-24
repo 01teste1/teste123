@@ -83,10 +83,12 @@ a:focus {
     text-decoration: none
 }
 
-img {
+
+/* img {
+    width: 100%;
     max-width: 100%;
     height: auto
-}
+} */
 
 .fix {
     overflow: hidden
@@ -3735,7 +3737,7 @@ p.checkout-coupon input[type=submit] {
 
 .single-product-tab .nav-tabs {
     border-bottom: 0 none;
-    width: 20%;
+    /* width: 20%; */
 }
 
 .single-product-tab .nav-tabs>li:first-child {
@@ -3745,19 +3747,19 @@ p.checkout-coupon input[type=submit] {
 .single-product-tab .nav-tabs>li {
     float: none;
     margin-bottom: 0;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 .single-product-tab .tab-content {
-    float: left;
+    /* float: left;
     padding-right: 14px;
-    width: 80%;
+    width: 80%; */
 }
 
 .single-product-tab .nav-tabs {
     border-bottom: 0 none;
     float: right;
-    width: 20%;
+    /* width: 20%; */
 }
 
 .single-product-tab .nav>li>a>img {
