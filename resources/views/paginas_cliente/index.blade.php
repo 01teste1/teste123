@@ -1,5 +1,4 @@
 @extends('main')
-
 @section('title','Home')
 @section('content')
 
@@ -88,6 +87,19 @@
     </div>
 </div>
 <!-- banner-area end -->
+<input class="calendario" data-date-format="d/m/Y">
+
+@section('scripts')
+<script type="text/javascript">
+    $('.calendario').flatpickr({
+        locale: 'pt',
+        inline:true,
+        minDate: new Date().fp_incr(3),
+
+    }); 
+</script>
+@endsection
+
 <!-- features-area start -->
 <div class="features-area pad-60">
     <div class="container">

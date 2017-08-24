@@ -18,7 +18,7 @@ Route::get('checkout', 'PagesController@getCheckout');
 Route::get('produto', 'PagesController@getProduto');
 
 Route::resource('pacote','ProdutoController');
-
+Route::get('/add/{id}','ProdutoController@adicionarCarrinho')->name('produto.addCarrinho');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

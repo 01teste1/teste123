@@ -35,22 +35,16 @@
 									</tr>
 								</thead>
 								<tbody>
+								@foreach(Cart::content() as $row)
 									<tr>
 										<td class="product-thumbnail"><a href="#"><img src="img/cart.jpg" alt="" /></a></td>
-										<td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-										<td class="product-price"><span class="amount">£165.00</span></td>
-										<td class="product-quantity"><input type="number" value="1" /></td>
-										<td class="product-subtotal">£165.00</td>
+										<td class="product-name"><a href="#">{{$row->name}}</a></td>
+										<td class="product-price"><span class="amount">{{$row->price}}</span></td>
+										<td class="product-quantity"><input type="number" value="{{$row->qty}}" /></td>
+										<td class="product-subtotal">{{$row->total}}</td>
 										<td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
 									</tr>
-									<tr>
-										<td class="product-thumbnail"><a href="#"><img src="img/cart2.jpg" alt="" /></a></td>
-										<td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
-										<td class="product-price"><span class="amount">£50.00</span></td>
-										<td class="product-quantity"><input type="number" value="1" /></td>
-										<td class="product-subtotal">£50.00</td>
-										<td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-									</tr>
+									@endforeach
 								</tbody>
 							</table>
 						</div>
@@ -95,7 +89,7 @@
 											<tr class="order-total">
 												<th>Total</th>
 												<td>
-													<strong><span class="amount">£215.00</span></strong>
+													<strong><span class="amount">{{Cart::total()}}</span></strong>
 												</td>
 											</tr>											
 										</tbody>

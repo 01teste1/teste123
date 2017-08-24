@@ -66,6 +66,10 @@
 		
 		<!-- main CSS
 		============================================ -->		
+        <link rel="stylesheet" href="{{ asset('css/flatpickr.min.css')}}">
+
+		<!-- main CSS
+		============================================ -->		
         <link rel="stylesheet" href="{{ asset('css/main.css')}}">
 		
 		<!-- style CSS

@@ -204,6 +204,7 @@
 									@if($produto->oferta)
 										<span class="sale-text">Oferta</span>
 									@endif
+									
 									<div class="product-img">
 										<a href="{{ route('produto.show',$produto.id) }}">
 											<img class="primary-image" src="{{$produto->imagemCapa}}" alt="" />
