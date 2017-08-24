@@ -20,6 +20,8 @@ Route::get('produto', 'PagesController@getProduto');
 //pruduto
 Route::get('produto/{id}','ProdutoController@show')->name('produto.show');
 
+Route::resource('pacote','ProdutoController');
+Route::get('/add/{id}','ProdutoController@adicionarCarrinho')->name('produto.addCarrinho');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

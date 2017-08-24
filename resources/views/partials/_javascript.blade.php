@@ -20,6 +20,9 @@
 
 		<!-- fancybox js -->
 		<script src="{{ asset('js/fancybox/jquery.fancybox.pack.js') }}"></script>	
+		<!-- flatpickr js -->
+		<script src="{{ asset('js/flatpickr.min.js') }}"></script>
+		<script src="{{ asset('js/flatPickr-pt.js') }}"></script>
 
 		<!-- jquery-counterup js -->
         <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
