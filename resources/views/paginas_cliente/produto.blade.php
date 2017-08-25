@@ -120,9 +120,8 @@
 						  <div class="tab-content">
 							<div role="tabpanel" class="tab-pane active" id="tab-desc">
 								<div class="product-tab-desc">
-								{!! $produto->detalhes !!}
-												<img src="{{asset('/uploads/1/2017-08/2017_techart_porsche_911_turbo_gt_street_r_1920x1080.jpg')}}" />
-									</div>
+									{!! $produto->detalhes !!}
+								</div>
 							</div>
 							<div role="tabpanel" class="tab-pane" id="page-comments">
 								<div class="product-tab-desc">

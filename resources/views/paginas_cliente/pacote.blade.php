@@ -197,7 +197,8 @@
 					<div class="clear"></div>
 					<div class="row">
 						<div class="grid-view">
-						@foreach($produtos as $produto)
+						
+						@foreach($produtos as $produto)						
 							<!-- single-product start -->
 							<div class="col-lg-4 col-md-4 col-sm-4">
 								<div class="single-product">
@@ -212,7 +213,7 @@
 										<div class="actions">
 											<div class="action-buttons">
 												<div class="add-to-cart">
-													<a href="#">Adicionar no Carrinho</a>
+													<a href="#Adicionar" onClick="addCarrinho('{{ route('produto.addCarrinho',$produto->id) }}')"> Adicionar no Carrinho</a>
 												</div>
 												<div class="add-to-links">
 													{{--  <div class="add-to-wishlist">
@@ -344,4 +345,20 @@
 		</div>
 	</div>
 
+@endsection
+
+@section('scripts')
+
+<script>
+	function addCarrinho(url) {
+		$.ajax({
+			type: "GET",
+			url: url,
+			data: "",
+			success: function() {
+				$('.cart-total').load(window.location.protocol + "//" + window.location.host + " .cart-total ul");
+			}
+		})
+	};
+</script>
 @endsection

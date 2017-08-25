@@ -59,39 +59,26 @@
 						<!-- cart-total start -->
 						<div class="cart-total">
 							<ul>
-								<li><a href="/carrinho"><span class="cart-icon"><i class="fa fa-shopping-cart"></i></span> <span class="cart-no">Carrinho: (2)</span></a>
+								<li><a href="/carrinho"><span class="cart-icon"><i class="fa fa-shopping-cart"></i></span> <span class="cart-no">Carrinho: (<span id="qtd-carrinho">{{Cart::count()}}</span>)</span></a>
+									@if(Cart::count() > 0)
 									<div class="mini-cart-content">
+									@foreach(Cart::content() as $row)									
 										<div class="cart-img-details">											
 											<div class="cart-img-photo">
 												<a href="#"><img src="img/product/total-cart.jpg" alt="" /></a>
-												<span class="quantity">1</span>
+												<span class="quantity">{{ $row->qty }}</span>
 											</div>
 											<div class="cart-img-contaent">
-												<a href="#"><p>Vestibulum suscipit</p></a>
-												<span>£165.00</span>
+												<a href="#"><p>{{ $row->name }}</p></a>
+												<span>{{ $row->price }}</span>
 											</div>
 											<div class="pro-del"><a href="#"><i class="fa fa-times-circle"></i></a>
 											</div>
 										</div>
 										<div class="clear"></div>
-										<div class="cart-img-details">											
-											<div class="cart-img-photo">
-												<a href="#"><img src="img/product/total-cart2.jpg" alt="" /></a>
-												<span class="quantity">1</span>
-											</div>
-											<div class="cart-img-contaent">
-												<a href="#"><p>Donec sodales mauris in</p></a>
-												<span>£50.00</span>
-											</div>
-											<div class="pro-del"><a href="#"><i class="fa fa-times-circle"></i></a>
-											</div>
-										</div>
-										<div class="cart-inner-bottom">
-											<p class="total">Subtotal: <span class="amount">£215.00</span></p>
-											<div class="clear"></div>
-											<p class="cart-button-top"><a href="/checkout">finalizar compra</a></p>
-										</div>
+										@endforeach
 									</div>
+									@endif
 								</li>
 							</ul>
 						</div>

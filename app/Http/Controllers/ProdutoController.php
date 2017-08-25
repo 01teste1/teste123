@@ -16,8 +16,8 @@ class ProdutoController extends Controller
         return view('paginas_cliente.produto')->withProduto($produto)->withImagens($imagens);
     }
 
-    public function adicionarCarrinho($id){
-        
-        Cart::add($items->id, $items->nome, $items->qtd, $items->preco);
+    public function adicionarCarrinho($id){ 
+        $items = Db::table('produto')->find($id);
+        Cart::add($items->id, $items->nome, '1', $items->preco_carro);
     }
 }

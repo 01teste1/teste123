@@ -23,9 +23,6 @@ class PagesController extends Controller
         return view('paginas_cliente.pacote')->withProdutos($produtos);
     }
     public function getCarrinho(){
-        Cart::add('Teste 1', 'Product 1', 1, 9.99);
-        Cart::add('Teste 3', 'Product 3', 10, 5.95);
-
         return view('paginas_cliente.carrinho');
     }
       public function getCheckout(){
