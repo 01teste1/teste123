@@ -5,7 +5,7 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminProdutoController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminColaboradorController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
@@ -25,50 +25,40 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "produto";
+			$this->table = "colaborador";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Nome","name"=>"nome"];
-			$this->col[] = ["label"=>"Duracao","name"=>"duracao"];
-			$this->col[] = ["label"=>"ImagemCapa","name"=>"imagemCapa","image"=>true];
-			$this->col[] = ["label"=>"Preco Carro","name"=>"preco_carro","callback_php"=>'"R$ ". number_format($row->preco_carro,2)'];
-			$this->col[] = ["label"=>"Preco Mini Van","name"=>"preco_mini_van","callback_php"=>'"R$ ". number_format($row->preco_mini_van,2)'];
-			$this->col[] = ["label"=>"Preco Van","name"=>"preco_van","callback_php"=>'"R$ ". number_format($row->preco_van,2)'];
-			$this->col[] = ["label"=>"Preco Micro Onibus","name"=>"preco_micro_onibus","callback_php"=>'"R$ ". number_format($row->preco_micro_onibus,2)'];
-			$this->col[] = ["label"=>"Categoria","name"=>"id_categoria","join"=>"categoria,nome"];
-			$this->col[] = ["label"=>"Status","name"=>"status"];
+			$this->col[] = ["label"=>"Email","name"=>"email"];
+			$this->col[] = ["label"=>"Telefone","name"=>"telefone"];
+			$this->col[] = ["label"=>"Telefone2","name"=>"telefone2"];
+			$this->col[] = ["label"=>"Nome Banco","name"=>"nome_banco"];
+			$this->col[] = ["label"=>"Agencia","name"=>"agencia"];
+			$this->col[] = ["label"=>"Conta Banco","name"=>"conta_banco"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:3|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
-			$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
-			$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
-			$this->form[] = ['label'=>'ImagemCapa','name'=>'imagemCapa','type'=>'upload','validation'=>'required','width'=>'col-sm-5'];
-			$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			$this->form[] = ['label'=>'Preco Mini Van','name'=>'preco_mini_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
-			$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5'];
-			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5','datatable'=>'categoria,nome'];
-			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-5','dataenum'=>'Ativo;Inativo'];
+			$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required|min:1|max:255|email|unique:colaborador','width'=>'col-sm-10','placeholder'=>'Por favor digite um endereço de e-mail válido'];
+			$this->form[] = ['label'=>'Telefone','name'=>'telefone','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
+			$this->form[] = ['label'=>'Telefone2','name'=>'telefone2','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-5'];
+			$this->form[] = ['label'=>'Nome Banco','name'=>'nome_banco','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Agencia','name'=>'agencia','type'=>'text','validation'=>'required|min:1|numeric','width'=>'col-sm-4'];
+			$this->form[] = ['label'=>'Conta Banco','name'=>'conta_banco','type'=>'text','validation'=>'required|min:1|numeric','width'=>'col-sm-6'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:3|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Descricao','name'=>'descricao','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
-			//$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
-			//$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
-			//$this->form[] = ['label'=>'ImagemCapa','name'=>'imagemCapa','type'=>'upload','validation'=>'required','width'=>'col-sm-5'];
-			//$this->form[] = ['label'=>'Preco Carro','name'=>'preco_carro','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			//$this->form[] = ['label'=>'Preco Mini Van','name'=>'preco_mini_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>','];
-			//$this->form[] = ['label'=>'Preco Van','name'=>'preco_van','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5','decimals'=>'2','dec_point'=>'.'];
-			//$this->form[] = ['label'=>'Preco Micro Onibus','name'=>'preco_micro_onibus','type'=>'money','validation'=>'required|min:1|max:6','width'=>'col-sm-5'];
-			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5'];
-			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-5','dataenum'=>'Ativo;Inativo'];
+			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required|min:1|max:255|email|unique:colaborador','width'=>'col-sm-10','placeholder'=>'Por favor digite um endereço de e-mail válido'];
+			//$this->form[] = ['label'=>'Telefone','name'=>'telefone','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
+			//$this->form[] = ['label'=>'Telefone2','name'=>'telefone2','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-5'];
+			//$this->form[] = ['label'=>'Nome Banco','name'=>'nome_banco','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Agencia','name'=>'agencia','type'=>'text','validation'=>'required|min:1|numeric|max:255','width'=>'col-sm-4'];
+			//$this->form[] = ['label'=>'Conta Banco','name'=>'conta_banco','type'=>'text','validation'=>'required|min:1|numeric|max:255','width'=>'col-sm-6'];
 			# OLD END FORM
 
 			/* 
@@ -84,10 +74,7 @@
 	        | 
 	        */
 	        $this->sub_module = array();
-			
-			$this->sub_module[] = ['label'=>'Imagens','path'=>'imagens','parent_columns'=>'nome','foreign_key'=>'id_produto','button_color'=>'info','button_icon'=>'fa fa-bars'];
-			$this->sub_module[] = ['label'=>'Veículos','path'=>'produto_veiculo','parent_columns'=>'nome,duracao','foreign_key'=>'id_produto','button_color'=>'warning','button_icon'=>'fa fa-bars'];
-			
+
 
 	        /* 
 	        | ---------------------------------------------------------------------- 
@@ -172,6 +159,8 @@
 	        |
 	        */
 	        $this->script_js = NULL;
+
+
             /*
 	        | ---------------------------------------------------------------------- 
 	        | Include HTML Code before index table 
@@ -205,6 +194,7 @@
 	        |
 	        */
 	        $this->load_js = array();
+	        
 	        
 	        
 	        /*
@@ -277,15 +267,9 @@
 	    |
 	    */
 	    public function hook_before_add(&$postdata) {        
-			//Your code here
-			/*
-			*  Converte valor R% 5,800,00 em 5800.00 para inserir no banco
-			*/
-			$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
-			$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
-			$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
-			$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
-	    }	
+	        //Your code here
+
+	    }
 
 	    /* 
 	    | ---------------------------------------------------------------------- 
@@ -296,6 +280,7 @@
 	    */
 	    public function hook_after_add($id) {        
 	        //Your code here
+
 	    }
 
 	    /* 
@@ -307,16 +292,9 @@
 	    | 
 	    */
 	    public function hook_before_edit(&$postdata,$id) {        
-			//Your code here
-			//dd(number_format($postdata['preco_micro_onibus']/100,2,'.',''));
-			/*
-			*  Converte valor R% 5,800,00 em 5800.00 para inserir no banco
-			*/
-			$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
-			$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
-			$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
-			$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
-		}
+	        //Your code here
+
+	    }
 
 	    /* 
 	    | ---------------------------------------------------------------------- 

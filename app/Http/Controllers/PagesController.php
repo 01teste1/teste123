@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 use Cart;
 
 class PagesController extends Controller
 {
     public function getIndex(){
-        Carbon::setLocale('pt_BR');
-        $data = Carbon::now()->addDay(2)->toDateString();
-
         return view('paginas_cliente.index')->withData($data);
     }
      public function getPacote(){

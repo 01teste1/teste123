@@ -393,12 +393,14 @@ header {
 .cart-total ul li .mini-cart-content .cart-img-details .cart-img-photo {
     float: left;
     margin-right: 10px;
-    width: 50px;
+    /* width: 50px; */
 }
 
 .cart-total ul li .mini-cart-content .cart-img-details .cart-img-photo a {}
 
-.cart-total ul li .mini-cart-content .cart-img-details .cart-img-photo img {}
+.cart-total ul li .mini-cart-content .cart-img-details .cart-img-photo img {
+    height: 75px;
+}
 
 .cart-total ul li .mini-cart-content .cart-img-details .cart-img-contaent {
     float: left;
@@ -2795,6 +2797,54 @@ h3.wishlist-share-title {}
 16. cart page
 ============================= */
 
+@media only screen and (max-width: 650px) {
+    /* Force table to not be like tables anymore */
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+        display: block;
+    }
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    #no-more-tables tr {
+        border: 1px solid #ccc;
+    }
+    #no-more-tables td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+    #no-more-tables td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+    /*
+	Label the data
+	*/
+    #no-more-tables td:before {
+        content: attr(data-title);
+    }
+}
+
 .cart-main-area {
     margin-bottom: 60px;
 }
@@ -2829,7 +2879,7 @@ h3.wishlist-share-title {}
 .table-content table th {
     border-top: medium none;
     font-family: Montserrat, Arial, Helvetica, sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     padding: 20px 10px;
     text-align: center;
     text-transform: uppercase;
@@ -2851,6 +2901,7 @@ h3.wishlist-share-title {}
 }
 
 .table-content table td input {
+    text-align: center;
     background: #e5e5e5 none repeat scroll 0 0;
     border: medium none;
     border-radius: 3px;
@@ -2859,7 +2910,7 @@ h3.wishlist-share-title {}
     font-size: 15px;
     font-weight: normal;
     height: 40px;
-    padding: 0 5px 0 10px;
+    /* padding: 0 5px 0 10px; */
     width: 60px;
 }
 
@@ -2884,6 +2935,11 @@ h3.wishlist-share-title {}
     width: 130px;
 }
 
+.table-content table td.product-thumbnail img {
+    display: block;
+    width: 100%;
+}
+
 .table-content table td.product-remove i {
     color: #919191;
     display: inline-block;
@@ -2905,6 +2961,11 @@ h3.wishlist-share-title {}
 
 .table-content table td.product-quantity {
     width: 180px;
+}
+
+.table-content table td.product-quantity select {
+    font-size: 15px;
+    font-weight: 700;
 }
 
 .table-content table td.product-remove {
@@ -2996,7 +3057,7 @@ h3.wishlist-share-title {}
 }
 
 .cart_totals h2 {
-    border-bottom: 2px solid #333;
+    /* border-bottom: 2px solid #333; */
     display: inline-block;
     font-size: 30px;
     margin: 0 0 35px;
@@ -3028,10 +3089,10 @@ h3.wishlist-share-title {}
 
 .cart_totals table {}
 
-.cart_totals table td .amount {
+.cart_totals .amount {
     color: #ec4445;
-    float: right;
-    font-size: 13px;
+    /* float: right; */
+    font-size: 20px;
     font-weight: bold;
     margin-left: 5px;
     text-align: right;
@@ -3514,21 +3575,36 @@ p.checkout-coupon input[type=submit] {
 }
 
 .single-product-info h1.product_title {
-    float: left;
-    font-size: 14px;
+    /* float: left; */
+    display: inline-block;
+    font-size: 22px;
     font-weight: bold;
     text-transform: uppercase;
 }
 
-.single-product-info .price-box {
-    clear: both;
-    float: none;
-    font-size: 20px;
+.single-product-info .calendar h4 {
+    display: inline-block;
 }
 
-.single-product-info .pro-rating {
+.single-product-info .hour h4 {
+    display: inline-block;
+}
+
+.single-product-info .hour select {
+    width: 20% !important;
+    display: inline;
+}
+
+.single-product-info .price-box {
+    clear: both;
+    display: inline-block;
     float: none;
-    margin-top: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.single-product-info .calendar {
+    margin: 10px 0;
 }
 
 .single-product-info .short-description {
@@ -3553,13 +3629,18 @@ p.checkout-coupon input[type=submit] {
     margin: 0;
 }
 
-.single-product-info .quantity {}
+.single-product-info .quantity select {
+    font-size: 15px;
+    font-weight: 700;
+    width: 45%;
+    margin: 10px 0;
+}
 
 .single-product-info .quantity input {
     background: #e8e8e9 none repeat scroll 0 0;
     border: medium none;
     color: #000;
-    float: left;
+    /* float: left; */
     font-size: 17px;
     height: 40px;
     line-height: 40px;
@@ -3923,6 +4004,55 @@ p.checkout-coupon input[type=submit] {
 .upsells_products_widget span.old-price {
     font-size: 13px;
     margin-left: 3px;
+}
+
+.carro {
+    background-image: url('/img/carros/carro.png');
+}
+
+.mini-van {
+    background-image: url('/img/carros/mini-van.png');
+}
+
+.van {
+    background-image: url('/img/carros/van.png');
+}
+
+.micro-onibus {
+    background-image: url('/img/carros/micro-onibus.png');
+}
+
+.tipo-carro input {
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.tipo-carro label:hover {
+    border: 3px solid #ec4445;
+    border-radius: 4px;
+    line-height: 24px;
+    padding: 0 8px;
+    text-decoration: none;
+}
+
+.tipo-carro .selected {
+    border: 3px solid #ec4445;
+    border-radius: 4px;
+    line-height: 24px;
+    padding: 0 8px;
+    text-decoration: none;
+}
+
+.tipo-carro label {
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
 }
 
 

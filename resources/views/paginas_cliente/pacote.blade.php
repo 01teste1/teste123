@@ -207,13 +207,13 @@
 									@endif  --}}
 									<div class="product-img">
 										<a href="{{ route('produto.show',$produto->id) }}">
-											<img class="primary-image" src="{{$produto->imagemCapa}}" alt="" />
-											<img class="secondary-image" src="{{$produto->imagemCapa}}" alt="" />
+											<img class="primary-image" src="{{asset($produto->imagemCapa)}}" alt="" />
+											<img class="secondary-image" src="{{asset($produto->imagemCapa)}}" alt="" />
 										</a>
 										<div class="actions">
 											<div class="action-buttons">
 												<div class="add-to-cart">
-													<a href="#Adicionar" onClick="addCarrinho('{{ route('produto.addCarrinho',$produto->id) }}')"> Adicionar no Carrinho</a>
+													<a href="javascript:void(0);" onClick="Carrinho.add('{{ route('produto.addCarrinho',$produto->id) }}')"> Adicionar no Carrinho</a>
 												</div>
 												<div class="add-to-links">
 													{{--  <div class="add-to-wishlist">
@@ -232,15 +232,10 @@
 									</div>
 									<div class="product-content">
 										<h2 class="product-name"><a href="#">{{ $produto->nome }}</a></h2>
-										<div class="pro-rating">
-											<a href="#"><i class="fa fa-star"></i></a>
-											<a href="#"><i class="fa fa-star"></i></a>
-											<a href="#"><i class="fa fa-star"></i></a>
-											<a href="#"><i class="fa fa-star"></i></a>
-											<a href="#"><i class="fa fa-star"></i></a>
-										</div>
 										<div class="price-box">
-											<span class="new-price">{{ $produto->preco_carro }}</span>
+											<span class="new-price preco">{{ $produto->preco_carro }}</span>
+											<span class="new-price"> - </span>
+											<span class="new-price preco">{{ $produto->preco_micro_onibus }}</span>
 										</div>
 									</div>
 								</div>
@@ -345,20 +340,4 @@
 		</div>
 	</div>
 
-@endsection
-
-@section('scripts')
-
-<script>
-	function addCarrinho(url) {
-		$.ajax({
-			type: "GET",
-			url: url,
-			data: "",
-			success: function() {
-				$('.cart-total').load(window.location.protocol + "//" + window.location.host + " .cart-total ul");
-			}
-		})
-	};
-</script>
 @endsection

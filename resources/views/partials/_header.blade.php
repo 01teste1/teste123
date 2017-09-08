@@ -59,24 +59,28 @@
 						<!-- cart-total start -->
 						<div class="cart-total">
 							<ul>
-								<li><a href="/carrinho"><span class="cart-icon"><i class="fa fa-shopping-cart"></i></span> <span class="cart-no">Carrinho: (<span id="qtd-carrinho">{{Cart::count()}}</span>)</span></a>
+								<li><a href="/carrinho"><span class="cart-icon"><i class="fa fa-shopping-cart"></i></span> <span class="cart-no">Carrinho: <span id="qtd-carrinho">{{Cart::count()}}</span></span></a>
 									@if(Cart::count() > 0)
 									<div class="mini-cart-content">
 									@foreach(Cart::content() as $row)									
 										<div class="cart-img-details">											
 											<div class="cart-img-photo">
-												<a href="#"><img src="img/product/total-cart.jpg" alt="" /></a>
+												<a href="#"><img src="{{ asset($row->options['imagem']) }}" alt="" /></a>
 												<span class="quantity">{{ $row->qty }}</span>
 											</div>
-											<div class="cart-img-contaent">
+											<div class="cart-img-content">
 												<a href="#"><p>{{ $row->name }}</p></a>
-												<span>{{ $row->price }}</span>
+												<span>R$ {{ $row->price(2,',','.') }}</span>
 											</div>
-											<div class="pro-del"><a href="#"><i class="fa fa-times-circle"></i></a>
+											<div class="pro-del"><a href="javascript:void(0);"onClick="Carrinho.remove('{{ route('produto.removerDoCarrinho',$row->rowId) }}')"><i class="fa fa-times-circle"></i></a>
 											</div>
 										</div>
 										<div class="clear"></div>
 										@endforeach
+										<div class="buttons-cart">
+										<strong>Total: <span class="amount">R$ {{Cart::total(2,',','.')}}</span></strong>
+											<a href="javascript:void(0);" onClick="Carrinho.clear('{{ route('produto.limparCarrinho',$row->rowId) }}')">Limpar Carrinho</a>											
+										</div>
 									</div>
 									@endif
 								</li>
@@ -105,7 +109,7 @@
 							<nav>
 								<ul>									
 									{{--  <li><a href="blog.html">Blog</a></li>  --}}
-									<li><a href="/pacote">Pacotes</a>
+									<li><a href="/pacotes">Pacotes</a>
 										<div class="mega-menu">											
 											<span>
 												<a href="#" class="mega-title">WOMEN CLOTH </a>
@@ -169,7 +173,7 @@
 							<nav id="dropdown">
 								<ul>
 									{{--  <li><a href="blog.html">blog</a></li>  --}}
-									<li><a href="/pacote">Pacotes</a></li>
+									<li><a href="/pacotes">Pacotes</a></li>
 									{{--  <li><a href="#">Pages</a>
 										<ul>
 											<li><a href="about-us.html">about us</a></li>

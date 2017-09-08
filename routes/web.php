@@ -12,14 +12,24 @@
 */
 
 Route::get('/', 'PagesController@getIndex');
-Route::get('pacote', 'PagesController@getPacote');
+// Route::get('pacote', 'PagesController@getPacote')->name('pacote');
 Route::get('carrinho', 'PagesController@getCarrinho');
 Route::get('checkout', 'PagesController@getCheckout');
-Route::get('produto', 'PagesController@getProduto');
 
-//pruduto
-Route::get('produto/{id}','ProdutoController@show')->name('produto.show');
-Route::get('/add/{id}','ProdutoController@adicionarCarrinho')->name('produto.addCarrinho');
+//route select produto_veiculo
+Route::get('/select_veiculo','AdminProdutoVeiculoController@fill_select_veiculo');
+
+//pacotes
+Route::get('/pacotes', 'ProdutoController@index')->name('pacotes');
+Route::get('/pacote/{id}','ProdutoController@show')->name('produto.show');
+
+//carrinho
+Route::get('/carrinho/add/{id}','ProdutoController@addCarrinho')->name('produto.addCarrinho');
+Route::get('/carrinho/atualizar/{id}/{qtd}','ProdutoController@atualizarCarrinho')->name('produto.atualizarCarrinho');
+Route::get('/carrinho/remover/{id}','ProdutoController@removerDoCarrinho')->name('produto.removerDoCarrinho');
+Route::get('/carrinho/limpar','ProdutoController@limparCarrinho')->name('produto.limparCarrinho');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

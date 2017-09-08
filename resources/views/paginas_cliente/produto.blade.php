@@ -65,37 +65,60 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="single-product-info">
-						<div class="product-nav">
-							<a href=""><i class="fa fa-angle-right"></i></a>
-						</div>
 						<h1 class="product_title">{{$produto->nome}}</h1>
 						<div class="price-box">
-							<span class="Preço">{{$produto->preco_carro}}</span>
-							{{--  <span class="Preço antigo">R$ 400,00</span>  --}}
+							<span class="Preço preco">{{$produto->preco_carro}}</span>
+							<span class="Preço"> - </span>
+							<span class="Preço antigo">{{$produto->preco_micro_onibus}}</span>
 						</div>
-						<div class="pro-rating">
-							<a href="#"><i class="fa fa-star"></i></a>
-							<a href="#"><i class="fa fa-star"></i></a>
-							<a href="#"><i class="fa fa-star"></i></a>
-							<a href="#"><i class="fa fa-star"></i></a>
-							<a href="#"><i class="fa fa-star"></i></a>
-						</div>
-						<div class="short-description">
-							{!! $produto->descricao !!}						
-						</div>
-
-						<!-- começo calendario-->
-						<!-- fim calendario-->
+						<div class="tipo-carro">
+						{{dd($data)}}
+							<h4>Selecione o Veículo</h4>
+							@foreach($veiculo as $veiculos)													
+								<input id="{{$veiculos->nome}}" type="radio" name="{{$veiculos->nome}}" value="{{$veiculos->capacidade}}" >
+								<label for="{{$veiculos->nome}}" class="{{$veiculos->nome}}"></label>
+							@endforeach
 						
-						<form action="#">
-							<div class="quantity">
-								<input type="number" value="1" />
-								<button type="submit">Adicionar ao carrinho</button>
-							</div>
-						</form>
-						<div class="add-to-wishlist">
-							<a href="#" data-toggle="tooltip" title="Adicionar a lista de desejos"><i class="fa fa-star"></i></a>							
 						</div>
+						<!-- começo calendario-->						
+						<div class="calendar">
+							<h4>Data: </h4>						
+							<input id="calendario" readyonly class="calendario" data-date-format="d/m/Y">
+						</div>
+						<!-- fim calendario-->
+						<!-- começo hora-->							
+						<div class="hour">
+							<h4>Horário: </h4>	
+							<select class="form-control">
+								<option>Selecione</option>							
+								<option>08:00</option>
+								<option>08:30</option>
+								<option>09:00</option>
+								<option>09:30</option>
+								<option>10:00</option>
+								<option>10:30</option>
+								<option>11:00</option>
+								<option>11:30</option>
+								<option>12:00</option>
+								<option>12:30</option>
+								<option>13:00</option>
+								<option>13:30</option>
+								<option>14:00</option>
+								<option>14:30</option>
+							</select>					
+						</div>
+						<!-- fim calendario-->					
+						
+						<div class="quantity">
+							<h4>Quantidade de Veículos: </h4>
+							<select id="qtd" class="form-control">							
+							</select>	
+							<button onClick="Carrinho.add('{{ route('produto.addCarrinho',$produto->id) }}')">Adicionar ao carrinho</button>						
+						</div>
+						
+						{{--  <div class="add-to-wishlist">
+							<a href="#" data-toggle="tooltip" title="Adicionar a lista de desejos"><i class="fa fa-star"></i></a>							
+						</div>  --}}
 						<div class="share_buttons">
 							<a href="#"><img src="img/share-img.png" alt="" /></a>
 						</div>
@@ -200,14 +223,48 @@
 	@endsection
 	@section('scripts')
 
-	<script src="{{ asset('js/lightslider.min.js') }}"></script>
-	<script type="text/javascript">
-	$('#imageGallery').lightSlider({
-      gallery:true,
-	  loop:true,
-	  item:1,
-	  adaptiveHeight:true,
-	  thumbItem: 6,
+		<script src="{{ asset('js/lightslider.min.js') }}"></script>
+		<script type="text/javascript">
+
+
+
+			$('#imageGallery').lightSlider({
+				gallery:true,
+				loop:true,
+				item:1,
+				adaptiveHeight:true,
+				thumbItem: 6,
+			});
+
+			const fp = $('.calendario').flatpickr({
+				locale: 'pt',
+				inline: true,
+				enable: ['today'],
+				allowInput: false,
+				minDate: new Date().fp_incr(3)
+    		}); 		
+			fp.clear();
+
+		$('.tipo-carro input').click(function () {
+			$('.tipo-carro input:not(:checked)').next().removeClass("selected");
+			$('.tipo-carro input:checked').next().addClass("selected");
+					
+			if($(".tipo-carro input").is(":checked")){
+				fp.set('enable',['']);				
+				$('#qtd').html('');
+				for(i=1; i <= 5; i++)
+				{					
+					if(i <= 1){
+						$('#qtd').append($("<option></option>").val(i).html(i + " Veículo para "+ this.value * i + " pessoas"));
+					}else{
+						$('#qtd').append($("<option></option>").val(i).html(i + " Veículos para "+ this.value * i + " pessoas"));
+					}
+				}
+				
+			}
 		});
-	</script>
+
+
+
+		</script>
 	@endsection
