@@ -30,6 +30,9 @@
 										<th class="product-name">Item/ passeio</th>
 										<th class="product-price">Preço</th>
 										<th class="product-quantity">Quantidade</th>
+										<th class="product-quantity">Data</th>
+										<th class="product-quantity">Horário</th>
+										<th class="product-quantity">Veículo</th>
 										<th class="product-subtotal">Subtotal</th>
 										<th class="product-remove">Remover</th>
 									</tr>
@@ -42,11 +45,14 @@
 											<td class="product-price" data-title="Preço"><span class="amount">R$ {{$row->price(2,',','.')}}</span></td>
 											<td class="product-quantity" data-title="Quantidade">										
 												<select onChange="qtdCarrinho(this,'{{ $row->rowId }}')">
-													@for ($i = 1; $i <= 5; $i++)
+													@for ($i = 1; $i <= $row->options['qtdVeic']; $i++)
 														<option {{ $row->qty == $i ? 'selected' : '' }} value="{{$i}}">{{$i}}</option>
 													@endfor
 												</select>
 											</td>
+											<td class="product-quantity" data-title="Data">{{ $row->options['data'] }}</td>
+											<td class="product-quantity" data-title="Data">{{ $row->options['horario'] }}</td>
+											<td class="product-quantity" data-title="Data">{{ $row->options['veiculo'] }}</td>
 											<td class="product-subtotal" data-title="Subtotal">R$ {{$row->total(2,',','.')}}</td>
 											<td class="product-remove" data-title="Remover"><a href="#" onClick="Carrinho.remove('{{ route('produto.removerDoCarrinho',$row->rowId) }}')"><i class="fa fa-times"></i></a></td>
 										</tr>

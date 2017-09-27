@@ -65,63 +65,69 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="single-product-info">
-						<h1 class="product_title">{{$produto->nome}}</h1>
-						<div class="price-box">
-							<span class="Preço preco">{{$produto->preco_carro}}</span>
-							<span class="Preço"> - </span>
-							<span class="Preço antigo">{{$produto->preco_micro_onibus}}</span>
-						</div>
-						<div class="tipo-carro">
-						{{dd($data)}}
-							<h4>Selecione o Veículo</h4>
-							@foreach($veiculo as $veiculos)													
-								<input id="{{$veiculos->nome}}" type="radio" name="{{$veiculos->nome}}" value="{{$veiculos->capacidade}}" >
-								<label for="{{$veiculos->nome}}" class="{{$veiculos->nome}}"></label>
-							@endforeach
 						
-						</div>
-						<!-- começo calendario-->						
-						<div class="calendar">
-							<h4>Data: </h4>						
-							<input id="calendario" readyonly class="calendario" data-date-format="d/m/Y">
-						</div>
-						<!-- fim calendario-->
-						<!-- começo hora-->							
-						<div class="hour">
-							<h4>Horário: </h4>	
-							<select class="form-control">
-								<option>Selecione</option>							
-								<option>08:00</option>
-								<option>08:30</option>
-								<option>09:00</option>
-								<option>09:30</option>
-								<option>10:00</option>
-								<option>10:30</option>
-								<option>11:00</option>
-								<option>11:30</option>
-								<option>12:00</option>
-								<option>12:30</option>
-								<option>13:00</option>
-								<option>13:30</option>
-								<option>14:00</option>
-								<option>14:30</option>
-							</select>					
-						</div>
-						<!-- fim calendario-->					
-						
-						<div class="quantity">
-							<h4>Quantidade de Veículos: </h4>
-							<select id="qtd" class="form-control">							
-							</select>	
-							<button onClick="Carrinho.add('{{ route('produto.addCarrinho',$produto->id) }}')">Adicionar ao carrinho</button>						
-						</div>
-						
-						{{--  <div class="add-to-wishlist">
-							<a href="#" data-toggle="tooltip" title="Adicionar a lista de desejos"><i class="fa fa-star"></i></a>							
-						</div>  --}}
-						<div class="share_buttons">
-							<a href="#"><img src="img/share-img.png" alt="" /></a>
-						</div>
+						<form action="" id="form-prod" method="GET">						
+							<h1 class="product_title">{{$produto->nome}}</h1>
+							<div class="price-box">
+								<span class="Preço preco">{{$produto->preco_carro}}</span>
+								<span class="Preço"> - </span>
+								<span class="Preço antigo">{{$produto->preco_micro_onibus}}</span>
+							</div>
+							
+							<div class="tipo-carro">							
+								<h4>Selecione o Veículo</h4>
+								@foreach($veiculos as $key => $veiculo)													
+									<input data-qtd-veic="{{$veiculo->qtd_veic}}" data-qtd-passageiros="{{$veiculo->capacidade}}" id="{{$veiculo->nome}}" type="radio" name="veiculo" value="{{$veiculo->id_veiculo}}" >
+									<label for="{{$veiculo->nome}}" class="{{$veiculo->nome}}"></label>
+								@endforeach
+							</div>
+							<!-- começo calendario-->						
+							<div class="calendar">
+								<h4>Data: </h4>						
+								<input id="calendario" name="data" readyonly class="calendario" data-date-format="d/m/Y">
+							</div>
+							<!-- fim calendario-->
+
+							<div class="quantity">
+								<h4>Quantidade de Veículos: </h4>
+								<select id="qtd" name="quantidade" class="form-control">						
+								</select>	
+
+								<!-- começo hora-->							
+								<div class="hour">
+									<h4>Horário: </h4>	
+									<select name="horario" class="form-control">
+										<option>Selecione</option>							
+										<option value="08:00">08:00</option>
+										<option value="08:30">08:30</option>
+										<option value="09:00">09:00</option>
+										<option value="09:30">09:30</option>
+										<option value="10:00">10:00</option>
+										<option value="10:30">10:30</option>
+										<option value="11:00">11:00</option>
+										<option value="11:30">11:30</option>
+										<option value="12:00">12:00</option>
+										<option value="12:30">12:30</option>
+										<option value="13:00">13:00</option>
+										<option value="13:30">13:30</option>
+										<option value="14:00">14:00</option>
+										<option value="14:30">14:30</option>
+									</select>					
+								</div>
+							
+							<button id="addProd" onClick="Carrinho.add('{{ route('produto.addCarrinho',$produto->id) }}')">Adicionar ao carrinho</button>
+								
+									<div id="form-errors"></div>
+													
+							</div>
+													
+							{{--  <div class="add-to-wishlist">
+								<a href="#" data-toggle="tooltip" title="Adicionar a lista de desejos"><i class="fa fa-star"></i></a>							
+							</div>  --}}
+							<div class="share_buttons">
+								<a href="#"><img src="img/share-img.png" alt="" /></a>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -219,14 +225,11 @@
 		</div>
 	</div>
 	
-	
 	@endsection
 	@section('scripts')
 
 		<script src="{{ asset('js/lightslider.min.js') }}"></script>
 		<script type="text/javascript">
-
-
 
 			$('#imageGallery').lightSlider({
 				gallery:true,
@@ -241,30 +244,66 @@
 				inline: true,
 				enable: ['today'],
 				allowInput: false,
-				minDate: new Date().fp_incr(3)
+				minDate: new Date().fp_incr(2),
+				onChange: function(dateStr,dateFormat){					
+					changeQtdVeic(dateFormat,qtdPassageiro);
+				}
     		}); 		
-			fp.clear();
+		
+		var datas = [];
+		var vendidos;
+		var qtdPassageiro;
+		var qtd_veic;
 
-		$('.tipo-carro input').click(function () {
+		$('.tipo-carro input').click(function (e) {			
 			$('.tipo-carro input:not(:checked)').next().removeClass("selected");
 			$('.tipo-carro input:checked').next().addClass("selected");
-					
-			if($(".tipo-carro input").is(":checked")){
-				fp.set('enable',['']);				
-				$('#qtd').html('');
-				for(i=1; i <= 5; i++)
-				{					
-					if(i <= 1){
-						$('#qtd').append($("<option></option>").val(i).html(i + " Veículo para "+ this.value * i + " pessoas"));
-					}else{
-						$('#qtd').append($("<option></option>").val(i).html(i + " Veículos para "+ this.value * i + " pessoas"));
+			
+			
+			qtdPassageiro = $(".tipo-carro input:checked").data('qtd-passageiros');
+			qtd_veic = $(".tipo-carro input:checked").data('qtd-veic');
+			veic = $(".tipo-carro input:checked").val();
+			fp.clear();	
+			$.ajax({
+					type: "GET",
+					url: "{{ url('/produto/data')}}/{{Request::segment(2)}}",
+					data: {data:veic},
+					async: true,
+					success: function(elem) {									
+						datas = elem.bloqueado;
+						vendidos = elem.vendidos;
 					}
-				}
-				
-			}
+				}).done(function(){					
+					if(typeof datas !== 'undefined'){
+						fp.set('disable',datas);
+					}else{
+						fp.set('disable',['today']);						
+					}
+					fp.set('enable',['']);
+				});	
 		});
 
+		function changeQtdVeic(data){		
+			
+			if(typeof vendidos !== 'undefined'){
+				var result = jQuery.inArray(data,vendidos.data);
+				var qtd = vendidos.qtd[result];
+			}
+			if(typeof qtd == 'undefined')
+			{
+				qtd = qtd_veic;
+			}
 
+			$('#qtd').html('');
+			for(i=1; i <= qtd; i++)
+				{					
+					if(i <= 1){
+						$('#qtd').append($("<option></option>").val(i).html(i + " Veículo para "+ qtdPassageiro * i + " pessoas"));
+					}else{
+						$('#qtd').append($("<option></option>").val(i).html(i + " Veículos para "+ qtdPassageiro * i + " pessoas"));
+					}
+				}
+		}
 
 		</script>
 	@endsection

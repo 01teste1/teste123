@@ -3586,15 +3586,6 @@ p.checkout-coupon input[type=submit] {
     display: inline-block;
 }
 
-.single-product-info .hour h4 {
-    display: inline-block;
-}
-
-.single-product-info .hour select {
-    width: 20% !important;
-    display: inline;
-}
-
 .single-product-info .price-box {
     clear: both;
     display: inline-block;

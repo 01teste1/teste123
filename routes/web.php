@@ -23,6 +23,9 @@ Route::get('/select_veiculo','AdminProdutoVeiculoController@fill_select_veiculo'
 Route::get('/pacotes', 'ProdutoController@index')->name('pacotes');
 Route::get('/pacote/{id}','ProdutoController@show')->name('produto.show');
 
+Route::get('/produto/data/{id}','ProdutoController@getDataUnavailable')->name('produto.getData');
+
+
 //carrinho
 Route::get('/carrinho/add/{id}','ProdutoController@addCarrinho')->name('produto.addCarrinho');
 Route::get('/carrinho/atualizar/{id}/{qtd}','ProdutoController@atualizarCarrinho')->name('produto.atualizarCarrinho');
