@@ -25,7 +25,7 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "tipo_veiculo";
+			$this->table = "tipo_veiculos";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
@@ -46,7 +46,7 @@
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Nome','name'=>'nome','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Capacidade','name'=>'capacidade','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//// $this->form[] = ['label'=>'Produto','name'=>'Produto','type'=>'select2','width'=>'col-sm-10','datatable'=>'produto,nome','relationship_table'=>'produto_veiculo'];
+			//$this->form[] = ['label'=>'Quantidade','name'=>'qtd','type'=>'number','validation'=>'required','width'=>'col-sm-3'];
 			# OLD END FORM
 
 			/* 

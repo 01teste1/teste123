@@ -30,23 +30,22 @@ use Illuminate\Http\Request;
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Produto","name"=>"id_produto","join"=>"produto,nome"];
-			$this->col[] = ["label"=>"Veiculo","name"=>"id_veiculo","join"=>"tipo_veiculo,nome"];
+			$this->col[] = ["label"=>"Produto","name"=>"id_produto","join"=>"produtos,nome"];
+			$this->col[] = ["label"=>"Veiculo","name"=>"id_veiculo","join"=>"tipo_veiculos,nome"];
 			$this->col[] = ["label"=>"Qtd Veiculo","name"=>"qtd_veiculo"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Produto','name'=>'id_produto','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'produto,nome'];
-			$this->form[] = ['label'=>'Veiculo','name'=>'id_veiculo','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tipo_veiculo,nome'];
-			$this->form[] = ['label'=>'Qtd Veiculo','name'=>'qtd_veiculo','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Produto','name'=>'id_produto','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'produtos,nome'];
+			$this->form[] = ['label'=>'Veiculo','name'=>'id_veiculo','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tipo_veiculos,nome'];
+			$this->form[] = ['label'=>'Qtd Veiculo','name'=>'qtd_veiculo','type'=>'number','validation'=>'required','width'=>'col-sm-9'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Produto','name'=>'id_produto','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Veiculo','name'=>'id_veiculo','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tipo_veiculo,nome'];
-			//$this->form[] = ['label'=>'Qtd Veiculo','name'=>'qtd_veiculo','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Produto','name'=>'id_produto','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'produtos,nome'];
+			//$this->form[] = ['label'=>'Veiculo','name'=>'id_veiculo','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tipo_veiculos,nome'];
 			# OLD END FORM
 
 			/* 
@@ -383,9 +382,9 @@ use Illuminate\Http\Request;
 			$id = $request->input('id');			
 			
 			//busca tipo de veiculos não cadastrado para o produto. {id} = produto
-			$data = DB::table('tipo_veiculo')
-			->select('tipo_veiculo.nome as label','tipo_veiculo.id as value')
-			->whereNotIn('tipo_veiculo.id', DB::table('produto_veiculo')
+			$data = DB::table('tipo_veiculos')
+			->select('tipo_veiculos.nome as label','tipo_veiculos.id as value')
+			->whereNotIn('tipo_veiculos.id', DB::table('produto_veiculo')
 				->select('id_veiculo')
 				->whereNotNull('id_veiculo')
 				->where('id_produto', '=', $id))->get();

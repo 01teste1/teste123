@@ -69,15 +69,19 @@
 						<form action="" id="form-prod" method="GET">						
 							<h1 class="product_title">{{$produto->nome}}</h1>
 							<div class="price-box">
-								<span class="Preço preco">{{$produto->preco_carro}}</span>
-								<span class="Preço"> - </span>
-								<span class="Preço antigo">{{$produto->preco_micro_onibus}}</span>
+							{{--  {{dd($produto->veiculos)}}  --}}
+								@foreach($produto->veiculos as $key => $veiculo)
+									<span class="Preço preco" data-id="{{$veiculo->id}}">{{$veiculo->pivot->preco}}</span>
+									@if(!$loop->last)
+										<span class="Preço"> - </span>
+									@endif
+								@endforeach
 							</div>
 							
 							<div class="tipo-carro">							
 								<h4>Selecione o Veículo</h4>
-								@foreach($veiculos as $key => $veiculo)													
-									<input data-qtd-veic="{{$veiculo->qtd_veic}}" data-qtd-passageiros="{{$veiculo->capacidade}}" id="{{$veiculo->nome}}" type="radio" name="veiculo" value="{{$veiculo->id_veiculo}}" >
+								@foreach($produto->veiculos as $key => $veiculo)													
+									<input data-qtd-veic="{{$veiculo->qtd}}" data-qtd-passageiros="{{$veiculo->capacidade}}" id="{{$veiculo->nome}}" type="radio" name="veiculo" value="{{$veiculo->id}}" >
 									<label for="{{$veiculo->nome}}" class="{{$veiculo->nome}}"></label>
 								@endforeach
 							</div>
@@ -263,6 +267,9 @@
 			qtdPassageiro = $(".tipo-carro input:checked").data('qtd-passageiros');
 			qtd_veic = $(".tipo-carro input:checked").data('qtd-veic');
 			veic = $(".tipo-carro input:checked").val();
+			
+			
+
 			fp.clear();	
 			$.ajax({
 					type: "GET",

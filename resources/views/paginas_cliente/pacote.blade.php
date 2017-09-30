@@ -198,7 +198,9 @@
 					<div class="row">
 						<div class="grid-view">
 						
-						@foreach($produtos as $produto)						
+						@foreach($produtos as $key => $produto)	
+						{{--  verifica se o produto possui preço  --}}
+						@if($produtos[$key]->veiculos->first()->pivot->preco)					
 							<!-- single-product start -->
 							<div class="col-lg-4 col-md-4 col-sm-4">
 								<div class="single-product">
@@ -230,17 +232,23 @@
 											</div>
 										</div>							
 									</div>
-									<div class="product-content">
-										<h2 class="product-name"><a href="#">{{ $produto->nome }}</a></h2>
+									
+									@foreach($produtos[$key]->veiculos as $veiculo)										
+										<?php $precos[] = $veiculo->pivot->preco ?>
+									@endforeach
+									<div class="product-content">									
+										<h2 class="product-name"><a href="#">{{ $produto->nome }}</a></h2>										
+
 										<div class="price-box">
-											<span class="new-price preco">{{ $produto->preco_carro }}</span>
+											<span class="new-price preco">{{min($precos)}}</span>
 											<span class="new-price"> - </span>
-											<span class="new-price preco">{{ $produto->preco_micro_onibus }}</span>
+											<span class="new-price preco">{{max($precos)}}</span>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- single-product end -->				
+							<!-- single-product end -->	
+							@endif			
 							@endforeach
 						</div>
 					</div>

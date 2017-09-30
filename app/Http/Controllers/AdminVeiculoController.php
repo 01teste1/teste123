@@ -30,21 +30,21 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Tipo","name"=>"tipo","join"=>"tipo_veiculo,nome"];
+			$this->col[] = ["label"=>"Tipo","name"=>"tipo","join"=>"tipo_veiculos,nome"];
 			$this->col[] = ["label"=>"Luxo","name"=>"luxo"];
 			$this->col[] = ["label"=>"Colaborador","name"=>"id_colaborador","join"=>"colaborador,id"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Tipo','name'=>'tipo','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tipo_veiculo,nome'];
+			$this->form[] = ['label'=>'Tipo','name'=>'tipo','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tipo_veiculos,nome'];
 			$this->form[] = ['label'=>'Luxo','name'=>'luxo','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'sim;não'];
 			$this->form[] = ['label'=>'Colaborador','name'=>'id_colaborador','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'colaborador,nome'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Tipo','name'=>'tipo','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Tipo','name'=>'tipo','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tipo_veiculo,nome'];
 			//$this->form[] = ['label'=>'Luxo','name'=>'luxo','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'sim;não'];
 			//$this->form[] = ['label'=>'Colaborador','name'=>'id_colaborador','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'colaborador,nome'];
 			# OLD END FORM
