@@ -56,7 +56,9 @@ class ProdutoController extends Controller
             $produto = Produto::find($id);
             $veiculo = Produto::find($id)->veiculos()->where('id_tipo_veiculo',$idveiculo)->first();
             
-            Cart::add($produto->id, $produto->nome, $qtd,$veiculo->pivot->preco , ['imagem' => $produto->imagemCapa,'data' => $data,'horario' => $horario,'veiculo' => $veiculo->nome,'qtdVeic' => $qtdVeic]);
+            if(isset($veiculo)){
+                Cart::add($produto->id, $produto->nome, $qtd,$veiculo->pivot->preco , ['imagem' => $produto->imagemCapa,'data' => $data,'horario' => $horario,'id_tipo_veiculo' => $veiculo->id,'veiculo' => $veiculo->nome,'qtdVeic' => $qtdVeic]);
+            }
         }
 
     }
@@ -94,10 +96,6 @@ class ProdutoController extends Controller
         }
         
         return $datas;
-    }
-
-    public function getMinMax(){
-
     }
 
 }

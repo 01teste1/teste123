@@ -69,11 +69,10 @@
 						<form action="" id="form-prod" method="GET">						
 							<h1 class="product_title">{{$produto->nome}}</h1>
 							<div class="price-box">
-							{{--  {{dd($produto->veiculos)}}  --}}
 								@foreach($produto->veiculos as $key => $veiculo)
 									<span class="Preço preco" data-id="{{$veiculo->id}}">{{$veiculo->pivot->preco}}</span>
 									@if(!$loop->last)
-										<span class="Preço"> - </span>
+										<span class="Preço hifen"> - </span>
 									@endif
 								@endforeach
 							</div>
@@ -268,7 +267,16 @@
 			qtd_veic = $(".tipo-carro input:checked").data('qtd-veic');
 			veic = $(".tipo-carro input:checked").val();
 			
-			
+			$('.price-box .preco').each(function() {
+				if($(this).data('id') == veic){
+					$(this).show();
+				}else{
+					$(this).hide();
+				}
+				$(".hifen").hide();
+            });
+
+
 
 			fp.clear();	
 			$.ajax({

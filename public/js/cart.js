@@ -16,7 +16,6 @@ Carrinho = {
                         errors = dados; //this will get the errors response data.
                         //show them somewhere in the markup
                         //e.g
-                        console.log(errors);
                         errorsHtml = '<div class="alert alert-danger"><ul>';
 
                         $.each(errors, function(key, value) {
