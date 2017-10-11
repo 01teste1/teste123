@@ -37,6 +37,10 @@
 
 		<!-- Carrinho js -->
 		<script src="{{ asset('js/cart.js') }}"></script>
+
+		<!-- PagSeguro -->		
+		<script src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+		
 		
 		<!-- RS-Plugin JS
 		============================================ -->

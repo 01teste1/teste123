@@ -6,7 +6,8 @@
 	<div class="checkout-area">
 		<div class="container">
 			<div class="row">
-				<form action="#">
+				<form id="pagamento" action="" method="POST">
+				{{ csrf_field() }}
 					<div class="col-lg-6 col-md-6">
 						<div class="checkbox-form">						
 							<h3>Dados do Cliente</h3>
@@ -15,7 +16,7 @@
 									<div class="country-select">
 										<label>Cidade <span class="required">*</span></label>
 										<select name="cidade">
-										  <option value="1">Campos do Jordão</option>									 
+										  <option value="CamposdoJordao">Campos do Jordão</option>									 
 										</select> 										
 									</div>
 								</div>
@@ -88,7 +89,7 @@
 									</div>									
 								</div>
 								<div class="order-button-payment">
-									<button type="button" value="Place order" /> PayPal</button>
+									<input type="submit" value="Realizar Pagamento" />									
 								</div>
 							</div>
 						</div>
@@ -99,4 +100,21 @@
 	</div>
 	<!-- checkout-area end -->	
 	
+	@endsection
+
+	@section('scripts')
+	<script>		
+		$('#pagamento').one('submit', function(e) {
+			e.preventDefault();
+			var dados = $(this).serializeArray();
+			$.ajax({
+				type: "POST",
+				url: "{{url('pedido')}}",
+				data: dados,
+				success: function(code) {									
+					{{--  PagSeguroLightbox(code);  --}}
+				}
+			});	
+		});
+	</script>
 	@endsection

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE  html>
 <html class="no-js" lang="">
 @include('partials._head')
 @yield('custom-css')

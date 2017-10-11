@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Produto;
 use Cart;
+use PagSeguro;
 class ProdutoController extends Controller
 {
     
@@ -22,11 +23,6 @@ class ProdutoController extends Controller
 
         $imagens = DB::table('imagens')
         ->where('imagens.id_produto','=',$id)->get();
-
-        // $veiculos = DB::table('produto_veiculo')
-        // ->join('tipo_veiculos','tipo_veiculos.id','=','produto_veiculo.id_veiculo')
-        // ->select('produto_veiculo.id_veiculo as id_veiculo','tipo_veiculos.capacidade as capacidade','tipo_veiculos.nome','tipo_veiculos.qtd as qtd_veic')
-        // ->where('produto_veiculo.id_produto','=',$id)->get();
  
         return view('paginas_cliente.produto')->withProduto($produto)->withImagens($imagens)->withVeiculos($veiculos)->withDatas($datas);
     }
@@ -73,6 +69,46 @@ class ProdutoController extends Controller
 
     public function limparCarrinho(){ 
         Cart::destroy();
+    }
+
+    public function criarPedido(Request $request){
+        $validator = Validator::make($request->all(),[
+            'cidade' => 'required',
+            'nome-cliente' => 'required|string|min:3|max:23',
+            'sobrenome-cliente' => 'required|string|min:3|max:23',
+            'nome-hotel' => 'required|string|min:3',
+            'end-hotel' => 'required|string|min:5',
+            'nome-hotel' => 'required|string|min:3',
+            'email' => 'required|email',
+            'telefone' => 'required|string|min:10'            
+        ]); 
+        
+        
+        $pedido = Cart::content();
+        
+        $data['items'] = [];
+        foreach($pedido as $items){
+            $item['id'] = $items->id;
+            $item['description'] = $items->name;
+            $item['quantity'] = $items->qty;
+            $item['amount'] = $items->price;
+
+            array_push($data['items'],$item);
+        }
+
+        $data['sender']['email'] = $request->input('email');
+        $data['sender']['name'] = $request->input('nome-cliente') . ' ' . $request->input('sobrenome-cliente');
+        $data['sender']['phone'] = $request->input('telefone');
+        $data['sender']['email'] = $request->input('email');
+
+        $checkout = PagSeguro::checkout()->createFromArray($data);
+        $credentials = PagSeguro::credentials()->get();
+        $information = $checkout->send($credentials);
+
+        // dd($checkout);
+        $code = $information->getCode();
+
+        return $code;           
     }
 
     public function getDataUnavailable($id, Request $request){
