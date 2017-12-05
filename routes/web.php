@@ -35,7 +35,7 @@ Route::get('/carrinho/limpar','ProdutoController@limparCarrinho')->name('produto
 //checkout
 Route::post('/pedido','ProdutoController@criarPedido')->name('produto.pedido');
 Route::get('/pagamento')->name('pagseguro.redirect');
-Route::get('/notificacao')->name('pagseguro.notification');
+Route::post('/pagseguro','ProdutoController@notificacao')->name('pagseguro.notification');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

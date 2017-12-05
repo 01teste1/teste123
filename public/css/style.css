@@ -3536,6 +3536,19 @@ p.checkout-coupon input[type=submit] {
     background: #E61719
 }
 
+.pagseguro-creditCard .validade {
+    width: 55px;
+}
+
+.pagseguro-creditCard .nome {
+    width: 250px;
+}
+
+.pagseguro-creditCard kbd {
+    background-color: #e3e3e3 !important;
+    color: #035ec7 !important;
+}
+
 
 /*=========================== 
 18. product page

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cart;
+use PagSeguro;
 
 class PagesController extends Controller
 {
