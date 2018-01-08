@@ -2,7 +2,7 @@
 <script>
 	$(function() {
 		$('.inputMoney').priceFormat({
-			prefix: 'R$',
+			prefix: '',
 			@if($form['dec_point'])
 			thousandsSeparator: '{!! $form['dec_point']?: '' !!}',
 			@endif

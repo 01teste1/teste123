@@ -93,7 +93,7 @@
 											</div>  --}}
 										</div>
 										<div class="col-md-8">
-											<div class="pagseguro-form pagseguro-eft" style="display:none;">
+											<!-- <div class="pagseguro-form pagseguro-eft" style="display:none;">
 												<label>Banco</label>
 												<select name="pagseguro[bankName]">	
 													<option value="bradesco">Bradesco</option>
@@ -101,81 +101,13 @@
 													<option value="bancodobrasil">Banco do Brasil</option>
 													<option value="banrisul">Banrisul</option>
 												</select>
-											</div>
+											</div> -->
 											<div class="pagseguro-form pagseguro-boleto" style="display:none;">
 												Você vai ser redirecionado para a página do Boleto ao clicar "Finalizar compra"
 											</div>
 											<div class="pagseguro-form pagseguro-creditCard">
-												<div class="form-group">
-													<div class="row">
-													<div id="form-errors"></div>
-														<div class="col-md-7 form-group">
-															<label>Número  do Cartão</label>
-															<input name="numeroCartao" class="pagseguro_cc_card_num form-control" type="text" placeholder="" maxlength="16" />
-														</div>
-														<div class="col-md-5 form-group">
-															<label>Validade</label>
-															<div class="form-inline">
-																<input name="mesCartao" class="validade form-control pagseguro_cc_exp_date_mm" type="text" placeholder="MM" maxlength="2" />
-																<input name="anoCartao" class="validade form-control pagseguro_cc_exp_date_yy" type="text" placeholder="AA" maxlength="4" />								
-															</div>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-md-7 form-group">
-															<label>Codigo de Segurança 
-															<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus"><kbd> ? </kbd></a>
-															</label>
-															<input name="cvv" class="validade form-control pagseguro_cc_card_code" type="text" placeholder="" maxlength="4" />							                                
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<div class="row">
-														<div class="col-md-12">
-															<label>Nome do dono do cartão</label>
-															<input name="pagseguro[cc_holder]" class="nome form-control" type="text" placeholder="" maxlength="" />
-															<span id="helpBlock" class="help-block">ex: José Carlos S de Souza.</span>
-														</div>							                            
-														<div class="col-md-12">
-															<label>CPF</label>	
-															<input name="cpf" class="nome form-control" type="text" placeholder="" maxlength="" />
-														</div>
-														<div class="col-md-12">
-															<label>Data de Nascimento dono do Cartão</label>	
-															<input name="pagseguro[data_nascimento]" class="nome form-control" type="text" placeholder="DD/MM/AAAA" maxlength="" />
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label>Parcelamento</label>
-													<div class="pagseguro-installments-info">Pague em até <b>12x</b></div>
-													<select name="pagseguro[installments]" class="form-control">
-													<option>Escolha o número de parcelas</option>
-													</select>
-												</div>
-												<span id="helpBlock" class="help-block">*Todos os campos são obrigatórios</span>
-												<h4><b>Endereço de Cobrança</b></h4>
-												<div class="form-group">
-													<div class="row">
-														<div class="col-md-12">
-															<label>Nome do dono do cartão</label>
-															<input name="pagseguro[cc_holder]" class="nome form-control" type="text" placeholder="" maxlength="" />
-															<span id="helpBlock" class="help-block">ex: José Carlos S de Souza.</span>
-														</div>							                            
-														<div class="col-md-12">
-															<label>CPF</label>	
-															<input name="cpf" class="nome form-control" type="text" placeholder="" maxlength="" />
-														</div>
-														<div class="col-md-12">
-															<label>Data de Nascimento dono do Cartão</label>	
-															<input name="pagseguro[data_nascimento]" class="nome form-control" type="text" placeholder="DD/MM/AAAA" maxlength="" />
-														</div>
-													</div>
-												</div>				
-											</div>
-											
-											
+	 ola
+											</div>										
 										</div>
 									</div>
 								</div>
@@ -213,7 +145,31 @@
 	
 	@endsection
 
+	
 	@section('scripts')
+ 	<script>		
+ 		$('#pagamento').one('submit', function(e) {
+ 			e.preventDefault();
+ 			var dados = $(this).serializeArray();
+ 			$.ajax({
+ 				type: "POST",
+ 				url: "{{url('pedido')}}",
+ 				data: dados,
+ 				success: function(code) {
+					 console.log(33+33);									
+ 					 PagSeguroLightbox(code);
+ 				}
+ 			});	
+ 		});
+		 $('input.pagseguro_radio').change(function(){
+            $('.pagseguro-form').hide();
+            $('.pagseguro-' + $('input.pagseguro_radio:checked').val() ).show();
+        });
+ 	</script>
+
+  	@endsection 
+
+	<!-- @section('scripts')
 	<script>
 	var dadosForm = "";
 	var paymentModule = 'pagseguro_app';
@@ -230,7 +186,7 @@
     }
 });
 
-	PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}');
+	
 
 	function submitForm(){
 			dadosForm.push({
@@ -357,4 +313,4 @@
 
 
 	</script>
-	@endsection
+	@endsection -->

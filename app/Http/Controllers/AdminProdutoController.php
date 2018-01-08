@@ -48,8 +48,8 @@
 			$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
 			$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
 			$this->form[] = ['label'=>'ImagemCapa','name'=>'imagemCapa','type'=>'upload','validation'=>'required','width'=>'col-sm-5'];
-			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5'];
-			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-5'];
+			$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5','datatable'=>'categoria,nome'];
+			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-5','dataenum'=>'Ativo;Inativo'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -59,7 +59,7 @@
 			//$this->form[] = ['label'=>'Detalhes','name'=>'detalhes','type'=>'wysiwyg','validation'=>'required|min:5|max:5000','width'=>'col-sm-4','style'=>'height: 0;'];
 			//$this->form[] = ['label'=>'Duracao','name'=>'duracao','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-5'];
 			//$this->form[] = ['label'=>'ImagemCapa','name'=>'imagemCapa','type'=>'upload','validation'=>'required','width'=>'col-sm-5'];
-			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5'];
+			//$this->form[] = ['label'=>'Categoria','name'=>'id_categoria','type'=>'select2','validation'=>'required','width'=>'col-sm-5','datatable'=>'categoria,nome'];
 			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required','width'=>'col-sm-5'];
 			# OLD END FORM
 
@@ -274,10 +274,10 @@
 			/*
 			*  Converte valor R% 5,800,00 em 5800.00 para inserir no banco
 			*/
-			$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
-			$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
-			$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
-			$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
+			// $postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
+			// $postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
+			// $postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
+			// $postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
 	    }	
 
 	    /* 
@@ -305,10 +305,10 @@
 			/*
 			*  Converte valor R% 5,800,00 em 5800.00 para inserir no banco
 			*/
-			$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
-			$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
-			$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
-			$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
+		// 	$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
+		// 	$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
+		// 	$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
+		// 	$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
 		}
 
 	    /* 
