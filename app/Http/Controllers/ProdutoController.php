@@ -150,7 +150,7 @@ class ProdutoController extends Controller
         ->whereBetween('item_pedido.data_passeio', [Carbon::today()->addDay(3)->toDateString(),Carbon::today()->addYear()->toDateString()])
         ->where('item_pedido.id_produto','=',$id)        
         ->where('item_pedido.id_tipo_veiculo','=',$veic)        
-        ->groupBy('item_pedido.data_passeio','item_pedido.id_tipo_veiculo','tipo_veiculos.capacidade')       
+        ->groupBy('item_pedido.data_passeio','item_pedido.id_tipo_veiculo','tipo_veiculos.capacidade','tipo_veiculos.qtd')       
         ->get();        
         $datas = array();
         foreach($data as $veic ){
