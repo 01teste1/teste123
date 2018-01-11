@@ -73,73 +73,99 @@ class ProdutoController extends Controller
 
     public function criarPedido(Request $request){
 
-        // $validator = Validator::make($request->all(),[
-        //     'cidade' => 'required',
-        //     'nome-cliente' => 'required|string|min:3|max:23',
-        //     'sobrenome-cliente' => 'required|string|min:3|max:23',
-        //     'nome-hotel' => 'required|string|min:3',
-        //     'end-hotel' => 'required|string|min:5',
-        //     'nome-hotel' => 'required|string|min:3',
-        //     'email' => 'required|email',
-        //     'telefone' => 'required|string|min:10'            
-        // ]); 
-        
+        $validator = Validator::make($request->all(),[
+            'cidade' => 'required',
+            'nome-cliente' => 'required|string|min:3|max:23',
+            'sobrenome-cliente' => 'required|string|min:3|max:23',
+            'nome-hotel' => 'required|string|min:3',
+            'end-hotel' => 'required|string|min:5',
+            'obs' => 'max:500',
+            'email' => 'required|email',
+            'telefone' => 'required|string|min:10'            
+        ]); 
         
         $pedido = Cart::content();
         
         $data['items'] = [];
         foreach($pedido as $items){
-            $item['itemId'] = $items->id;
-            $item['itemDescription'] = $items->name;
-            $item['itemAmount'] = $items->price;            
-            $item['itemQuantity'] = $items->qty;
+            $item['id'] = $items->id;
+            $item['description'] = $items->name;
+            $item['quantity'] = $items->qty;
+            $item['amount'] = $items->price;
 
             array_push($data['items'],$item);
         }
 
-        // $data['sender']['email'] = $request->input('email');
+        $data['sender']['email'] = $request->input('email');
         $data['sender']['name'] = $request->input('nome-cliente') . ' ' . $request->input('sobrenome-cliente');
         $data['sender']['phone'] = $request->input('telefone');
         // $data['sender']['email'] = $request->input('email');
 
-               
-        $installments = explode("x",$request->input('pagseguro.installments'));
-        try {
-            $pagseguro = PagSeguro::setReference('#1234788')
-            ->setSenderInfo([
-                'senderName' => $data['sender']['name'], //Deve conter nome e sobrenome
-                'senderPhone' => '(12) 3664-2525', //$data['sender']['phone'], Código de área enviado junto com o telefone
-                'senderEmail' => 'c15285378256444357335@sandbox.pagseguro.com.br',
-                'senderHash' => $request->input('senderHash'),
-                'senderCPF' => $request->input('cpf') //Ou CNPJ se for Pessoa Júridica
-                ])
-            ->setCreditCardHolder([
-                'creditCardHolderName' => $request->input('pagseguro.cc_holder'), //Deve conter nome e sobrenome
-                //'creditCardHolderPhone' => '(32) 1324-1421', //Código de área enviado junto com o telefone
-                'creditCardHolderCPF' => $request->input('cpf'), //Ou CNPJ se for Pessoa Júridica
-                'creditCardHolderBirthDate' => $request->input('pagseguro.data_nascimento'),
-            ])
-            ->setBillingAddress([
-                'billingAddressStreet' => 'Rua/Avenida',
-                'billingAddressNumber' => 'Número',
-                'billingAddressDistrict' => 'Bairro',
-                'billingAddressPostalCode' => '12345-678',
-                'billingAddressCity' => 'cidade',
-                'billingAddressState' => 'SP'
-            ])
-            ->setItems($data['items'])
-            ->send([
-                'paymentMethod' => $request->input('pagseguro.option'),
-                'creditCardToken' => $request->input('creditCardToken'),
-                'installmentQuantity' => $installments[0],
-                'installmentValue' => $installments[1],
-            ]); 
+        $checkout = PagSeguro::checkout()->createFromArray($data);
+        $credentials = PagSeguro::credentials()->get();
+        $information = $checkout->send($credentials);
 
-        }
-        catch(\Artistas\PagSeguro\PagSeguroException $e) {
-            $e->getCode(); //codigo do erro
-            $e->getMessage(); //mensagem do erro
-        }      
+        // dd($checkout);
+        $code = $information->getCode();
+
+        return $code;           
+        
+        
+        // $pedido = Cart::content();
+        
+        // $data['items'] = [];
+        // foreach($pedido as $items){
+        //     $item['itemId'] = $items->id;
+        //     $item['itemDescription'] = $items->name;
+        //     $item['itemAmount'] = $items->price;            
+        //     $item['itemQuantity'] = $items->qty;
+
+        //     array_push($data['items'],$item);
+        // }
+
+        // // $data['sender']['email'] = $request->input('email');
+        // $data['sender']['name'] = $request->input('nome-cliente') . ' ' . $request->input('sobrenome-cliente');
+        // $data['sender']['phone'] = $request->input('telefone');
+        // // $data['sender']['email'] = $request->input('email');
+
+               
+        // $installments = explode("x",$request->input('pagseguro.installments'));
+        // try {
+        //     $pagseguro = PagSeguro::setReference('#1234788')
+        //     ->setSenderInfo([
+        //         'senderName' => $data['sender']['name'], //Deve conter nome e sobrenome
+        //         'senderPhone' => '(12) 3664-2525', //$data['sender']['phone'], Código de área enviado junto com o telefone
+        //         'senderEmail' => 'c15285378256444357335@sandbox.pagseguro.com.br',
+        //         'senderHash' => $request->input('senderHash'),
+        //         'senderCPF' => $request->input('cpf') //Ou CNPJ se for Pessoa Júridica
+        //         ])
+        //     ->setCreditCardHolder([
+        //         'creditCardHolderName' => $request->input('pagseguro.cc_holder'), //Deve conter nome e sobrenome
+        //         //'creditCardHolderPhone' => '(32) 1324-1421', //Código de área enviado junto com o telefone
+        //         'creditCardHolderCPF' => $request->input('cpf'), //Ou CNPJ se for Pessoa Júridica
+        //         'creditCardHolderBirthDate' => $request->input('pagseguro.data_nascimento'),
+        //     ])
+        //     ->setBillingAddress([
+        //         'billingAddressStreet' => 'Rua/Avenida',
+        //         'billingAddressNumber' => 'Número',
+        //         'billingAddressDistrict' => 'Bairro',
+        //         'billingAddressPostalCode' => '12345-678',
+        //         'billingAddressCity' => 'cidade',
+        //         'billingAddressState' => 'SP'
+        //     ])
+        //     ->setItems($data['items'])
+        //     ->send([
+        //         'paymentMethod' => $request->input('pagseguro.option'),
+        //         'creditCardToken' => $request->input('creditCardToken'),
+        //         'installmentQuantity' => $installments[0],
+        //         'installmentValue' => $installments[1],
+        //     ]); 
+
+        // }
+        // catch(\Artistas\PagSeguro\PagSeguroException $e) {
+        //     $e->getCode(); //codigo do erro
+        //     $e->getMessage(); //mensagem do erro
+        // }      
     }
 
     public function getDataUnavailable($id, Request $request){

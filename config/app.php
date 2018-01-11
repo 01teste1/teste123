@@ -165,7 +165,7 @@ return [
 
         crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Artistas\PagSeguro\PagSeguroServiceProvider::class,
+        laravel\pagseguro\Platform\Laravel5\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -217,9 +217,7 @@ return [
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
-        'Password' => Illuminate\Support\Facades\Password::class,
-        'PagSeguro' => Artistas\PagSeguro\PagSeguroFacade::class,
-        'PagSeguroRecorrente' => Artistas\PagSeguro\PagSeguroRecorrenteFacade::class,
+        'Password' => Illuminate\Support\Facades\Password::class,       
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,
@@ -232,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PagSeguro' => laravel\pagseguro\Platform\Laravel5\PagSeguro::class,
         
     ],
 

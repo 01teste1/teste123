@@ -305,10 +305,17 @@
 			/*
 			*  Converte valor R% 5,800,00 em 5800.00 para inserir no banco
 			*/
+<<<<<<< HEAD
 			// $postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
 			// $postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
 			// $postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
 			// $postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
+=======
+		// 	$postdata['preco_carro'] = number_format($postdata['preco_carro']/100,2,'.','');
+		// 	$postdata['preco_mini_van'] =number_format($postdata['preco_mini_van']/100,2,'.','');
+		// 	$postdata['preco_van'] =number_format($postdata['preco_van']/100,2,'.','');
+		// 	$postdata['preco_micro_onibus'] =number_format($postdata['preco_micro_onibus']/100,2,'.','');
+>>>>>>> 0830a910a49f65d9d0c29051a057bae9d9bb5eb0
 		}
 
 	    /* 
