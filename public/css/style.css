@@ -37,7 +37,8 @@
 	20. contact page
 	21. error-page
 	27. portfolio page
-	28. portfolio single page
+    28. portfolio single page
+    29. meus passeios
     5.  
 -----------------------------------------------------------------------------------*/
 
@@ -668,7 +669,7 @@ p.cart-button-top {
     margin-bottom: 50px;
 }
 
-.single-banner {}
+.single-banner { margin-bottom: 15px;}
 
 .single-banner a {
     display: block;
@@ -738,7 +739,7 @@ p.cart-button-top {
 
 .single-banner a {}
 
-.single-banner a img {}
+.single-banner a img { width: 100%}
 
 .single-banner {
     overflow: hidden;
@@ -4425,4 +4426,26 @@ p.checkout-coupon input[type=submit] {
     background-position: center center;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+}
+
+
+/*=========================== 
+29. meus passeios
+============================= */
+.card {
+    background-color: #fff0d3;
+    width: 100%;
+    color: rgb(0, 0, 0);
+
+}
+
+.card .card-nome{
+    float: left;
+    text-align: left;
+    padding: 5px 10px;
+}
+
+.card .card-status span:first-child{
+    float: left;
+    padding: 1px 10px;
 }

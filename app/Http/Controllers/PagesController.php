@@ -22,11 +22,14 @@ class PagesController extends Controller
     public function getCarrinho(){
         return view('paginas_cliente.carrinho');
     }
-      public function getCheckout(){
+    public function getCheckout(){
         return view('paginas_cliente.checkout');
     }
-      public function getProduto(){
+    public function getProduto(){
          return view('paginas_cliente.produto');
+    }
+    public function getMeusPasseios(){
+        return view('paginas_cliente.meupasseio');
     }
     
 }
