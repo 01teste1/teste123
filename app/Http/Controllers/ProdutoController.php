@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Produto;
+use App\Pedido;
 use Cart;
 use PagSeguro;
 class ProdutoController extends Controller
 {
     
     public function index(){
-        $produtos = Produto::where('produtos.status','Ativo')->paginate(10);    
-
+        $produtos = Produto::where('produtos.status','Ativo')->paginate(10);
         return view('paginas_cliente.pacote')->withProdutos($produtos);
     }    
  
-    public function show($id){   
+    public function show($id){
         $produto = Produto::find($id);
 
         $imagens = DB::table('imagens')
@@ -82,12 +82,33 @@ class ProdutoController extends Controller
             'obs' => 'max:500',
             'email' => 'required|email',
             'telefone' => 'required|string|min:10'            
-        ]); 
+        ]);       
+
+        // $dados['nome_cliente'] = $request->input('nome-cliente') . ' ' . $request->input('sobrenome-cliente');
+        // $dados['valor_total'] = Cart::total();
+        // $dados['data_compra'] = Carbon::today()->toDateString();
+        // $dados['embarque'] = $request->input('nome-hotel');
+        // $dados['endereco'] = $request->input('end-hotel');
+        // $dados['telefone'] = $request->input('telefone');
+        // $dados['obs'] = $request->input('obs');
+        // $dados['email'] = $request->input('email');
+
+        // $pedido = Pedido::create($dados);
+
+        $carrinho = Cart::content();        
         
-        $pedido = Cart::content();
+        // $pedido['items'] = [];
+        // foreach($carrinho as $items){
+        //     $item['id'] = $items->id;
+        //     $item['description'] = $items->name;
+        //     $item['quantity'] = $items->qty;
+        //     $item['amount'] = $items->price;
+
+        //     array_push($pedido['items'],$item);
+        // }
         
         $data['items'] = [];
-        foreach($pedido as $items){
+        foreach($carrinho as $items){
             $item['id'] = $items->id;
             $item['description'] = $items->name;
             $item['quantity'] = $items->qty;
@@ -95,7 +116,7 @@ class ProdutoController extends Controller
 
             array_push($data['items'],$item);
         }
-
+       
         $data['sender']['email'] = $request->input('email');
         $data['sender']['name'] = $request->input('nome-cliente') . ' ' . $request->input('sobrenome-cliente');
         $data['sender']['phone'] = $request->input('telefone');
@@ -103,12 +124,12 @@ class ProdutoController extends Controller
 
         $checkout = PagSeguro::checkout()->createFromArray($data);
         $credentials = PagSeguro::credentials()->get();
-        $information = $checkout->send($credentials);
-
-        // dd($checkout);
+        $information = $checkout->send($credentials); 
         $code = $information->getCode();
+        
 
-        return $code;           
+        
+        return $code;    
         
         
         // $pedido = Cart::content();

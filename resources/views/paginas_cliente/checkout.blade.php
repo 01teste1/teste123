@@ -155,9 +155,17 @@
  				type: "POST",
  				url: "{{url('pedido')}}",
  				data: dados,
- 				success: function(code) {
-					 console.log(33+33);									
- 					 PagSeguroLightbox(code);
+ 				success: function(code) {									
+ 					 PagSeguroLightbox(code,{
+                 		success : function(transactionCode) {
+                          	alert('success - ' + transactionCode);
+                              location.href="http://teste123.test/meuspasseios";
+                 		},
+				 			abort : function() {
+                          	alert('abort');
+                            location.href="http://teste123.test/redirecterror";
+                 		}					  
+					});
  				}
  			});	
  		});
