@@ -31,6 +31,7 @@ Route::get('/carrinho/add/{id}','ProdutoController@addCarrinho')->name('produto.
 Route::get('/carrinho/atualizar/{id}/{qtd}','ProdutoController@atualizarCarrinho')->name('produto.atualizarCarrinho');
 Route::get('/carrinho/remover/{id}','ProdutoController@removerDoCarrinho')->name('produto.removerDoCarrinho');
 Route::get('/carrinho/limpar','ProdutoController@limparCarrinho')->name('produto.limparCarrinho');
+Route::get('/contact','PagesController@getIndex')->name('pagseguro.redirect');
 
 //checkout
 Route::post('/pedido','ProdutoController@criarPedido')->name('produto.pedido');

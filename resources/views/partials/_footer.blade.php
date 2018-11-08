@@ -64,9 +64,7 @@
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<div class="payment-img">
-							<img src="img/payment.png" alt="" />
-						</div>
-					</div>
+						<img src="https://stc.pagseguro.uol.com.br/public/img/banners/pagamento/avista_estatico_550_70.gif" alt="Logotipos de meios de pagamento do PagSeguro" title="Este site aceita pagamentos com os principais bancos, saldo em conta PagSeguro e boleto.">					</div>
 				</div>
 			</div>
 		</div>

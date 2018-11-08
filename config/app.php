@@ -166,6 +166,7 @@ return [
         crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         laravel\pagseguro\Platform\Laravel5\ServiceProvider::class,
+        GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
 
         /*
          * Package Service Providers...
